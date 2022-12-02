@@ -43,7 +43,15 @@
 			facial_hairs_cache[hash][facial_hairs_cache[hash][i]][LEFT] = facial_hairs_cache[hash][facial_hairs_cache[hash][i]][LEFT] || facial_hairs_cache[hash][i - 1]
 			facial_hairs_cache[hash][facial_hairs_cache[hash][i]][RIGHT] = facial_hairs_cache[hash][facial_hairs_cache[hash][i]][RIGHT] || facial_hairs_cache[hash][i + 1]
 
-
+	for(var/path in subtypesof(/datum/sprite_accessory/undershirt))
+		var/datum/sprite_accessory/undershirt/S = new path()
+		undershirt_t[S.name] = S
+		for(var/species in S.species_allowed)
+			undershirt_t_cache["[species][S.gender][S.ipc_head_compatible]"] += list(S.name = list(null, null))
+			if(S.gender == NEUTER)
+				undershirt_t_cache["[species][MALE][S.ipc_head_compatible]"] += list(S.name = list(null, null))
+				undershirt_t_cache["[species][FEMALE][S.ipc_head_compatible]"] += list(S.name = list(null, null))
+			undershirt_t_cache["[species][PLURAL][S.ipc_head_compatible]"] += list(S.name = list(null, null))
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	for(var/T in subtypesof(/datum/surgery_step))
 		var/datum/surgery_step/S = new T

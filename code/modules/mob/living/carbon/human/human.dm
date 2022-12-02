@@ -130,7 +130,7 @@
 	name = real_name
 
 	underwear = 0
-	undershirt = 0
+	undershirt_style = "Nude"
 	faction = "faithless"
 	regenerate_icons()
 

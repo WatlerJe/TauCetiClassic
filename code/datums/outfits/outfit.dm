@@ -183,7 +183,7 @@
 	equip_slots(H, slot2type)
 
 	if(outfit_undershirt)
-		H.undershirt = undershirt_t.Find(outfit_undershirt)
+		H.undershirt_style = undershirt_t.Find(outfit_undershirt)
 		H.update_body()
 
 	if(outfit_underwear_m || outfit_underwear_f)

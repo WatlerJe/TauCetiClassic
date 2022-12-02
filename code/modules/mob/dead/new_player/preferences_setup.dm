@@ -15,7 +15,7 @@
 	randomize_eyes_color()
 	randomize_skin_color()
 	underwear = rand(1,underwear_m.len)
-	undershirt = rand(1,undershirt_t.len)
+	undershirt_style = pick(undershirt_t)
 	socks = rand(1,socks_t.len)
 	backbag = 2
 	use_skirt = pick(TRUE, FALSE)

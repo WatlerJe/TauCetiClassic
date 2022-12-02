@@ -2,7 +2,7 @@
 #define SAVEFILE_VERSION_MIN 8
 
 //This is the current version, anything below this will attempt to update (if it's not obsolete)
-#define SAVEFILE_VERSION_MAX 39
+#define SAVEFILE_VERSION_MAX 40
 
 //For repetitive updates, should be the same or below SAVEFILE_VERSION_MAX
 //set this to (current SAVEFILE_VERSION_MAX)+1 when you need to update:
@@ -244,6 +244,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 39)
 		S["ghost_orbit"] << null
 
+	if(current_version < 40)
+		if (!(undershirt_style in undershirt_t))
+			undershirt_style = "Nude"
 //
 /datum/preferences/proc/repetitive_updates_character(current_version, savefile/S)
 
@@ -533,7 +536,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["eyes_green"]        >> g_eyes
 	S["eyes_blue"]         >> b_eyes
 	S["underwear"]         >> underwear
-	S["undershirt"]        >> undershirt
+	S["undershirt_style"]  >> undershirt_style
 	S["socks"]             >> socks
 	S["backbag"]           >> backbag
 	S["b_type"]            >> b_type
@@ -616,7 +619,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	g_eyes			= sanitize_integer(g_eyes, 0, 255, initial(g_eyes))
 	b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
 	underwear		= sanitize_integer(underwear, 1, underwear_m.len, initial(underwear))
-	undershirt		= sanitize_integer(undershirt, 1, undershirt_t.len, initial(undershirt))
+	//undershirt_style = sanitize_integer(undershirt_style, 1, undershirt_t.len, initial(undershirt_style))
 	socks			= sanitize_integer(socks, 1, socks_t.len, initial(socks))
 	backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
 	b_type			= sanitize_text(b_type, initial(b_type))
@@ -722,7 +725,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["eyes_green"]            << g_eyes
 	S["eyes_blue"]             << b_eyes
 	S["underwear"]             << underwear
-	S["undershirt"]            << undershirt
+	S["undershirt_style"]      << undershirt_style
 	S["socks"]                 << socks
 	S["backbag"]               << backbag
 	S["b_type"]                << b_type

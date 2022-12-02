@@ -14,6 +14,10 @@
 /proc/random_gradient_style()
 	return pick(hair_gradients)
 
+/proc/random_undershirt_style(gender)
+	var/undershirt_style = pick(undershirt_t)
+	return undershirt_style
+
 /proc/random_facial_hair_style(gender, species = HUMAN)
 	var/f_style = "Shaved"
 

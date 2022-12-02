@@ -201,9 +201,11 @@ Please contact me on #coderbus IRC. ~Carn x
 		if(!fat)
 			standing += mutable_appearance('icons/mob/human.dmi', "underwear[underwear]_[g]_s", -BODY_LAYER)
 
-	if((undershirt > 0) && (undershirt < undershirt_t.len) && species.flags[HAS_UNDERWEAR])
-		if(!fat)
-			standing += mutable_appearance('icons/mob/human_undershirt.dmi', "undershirt[undershirt]_s", -BODY_LAYER)
+	if(!fat && species.flags[HAS_UNDERWEAR])
+		var/datum/sprite_accessory/undershirt_type = undershirt_t[undershirt_style]
+		var/icon/undershirt_icon = new("icon" = undershirt_type.icon, "icon_state" = undershirt_type.icon_state)
+		undershirt_icon.Blend(rgb(r_undershirt, g_undershirt, b_undershirt), ICON_AND)
+		standing += mutable_appearance(undershirt_icon, undershirt_type.icon_state, -BODY_LAYER)
 
 	if(!fat && socks > 0 && socks < socks_t.len && species.flags[HAS_UNDERWEAR])
 		var/obj/item/organ/external/r_foot = bodyparts_by_name[BP_R_LEG]
@@ -751,7 +753,7 @@ Please contact me on #coderbus IRC. ~Carn x
 			var/tail_gender_appendix = null
 			if(species.gender_tail_icons && gender == FEMALE)
 				tail_gender_appendix = "_fem"
-			
+
 			var/image/tail_s = image("icon" = 'icons/mob/species/tail.dmi', "icon_state" = "[tail_state][tail_gender_appendix]")
 
 			var/obj/item/organ/external/chest/BP = bodyparts_by_name[BP_CHEST]

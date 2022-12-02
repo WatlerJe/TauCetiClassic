@@ -230,7 +230,7 @@
 		hash+="_" + selectedhairstyle
 	else
 		hash+="_" + H.f_style
-	hash+="_" + num2text(H.underwear) +"_" + num2text(H.undershirt) + "_" + num2text(H.socks)
+	hash+="_" + num2text(H.undershirt_style) +"_" + num2text(H.undershirt_style) + "_" + num2text(H.socks)
 	return hash
 
 /obj/item/weapon/scissors/proc/make_mannequin(mob/living/carbon/human/H)
@@ -289,7 +289,7 @@
 		mannequin.f_style = H.f_style
 
 	mannequin.underwear = H.underwear
-	mannequin.undershirt = H.undershirt
+	mannequin.undershirt_style = H.undershirt_style
 	mannequin.socks = H.socks
 
 	mannequin.update_body()

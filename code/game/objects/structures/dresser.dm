@@ -41,7 +41,7 @@
 				undershirt_options = undershirt_t
 				var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference") as null|anything in undershirt_options
 				if(new_undershirt && Adjacent(user))
-					H.undershirt = undershirt_options.Find(new_undershirt)
+					H.undershirt_style = undershirt_options.Find(new_undershirt)
 					H.update_body()
 			if("Socks")
 				var/list/socks_options

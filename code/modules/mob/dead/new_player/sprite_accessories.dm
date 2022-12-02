@@ -1867,3 +1867,39 @@
 	icon_state = "dio_brush"
 	do_colouration = FALSE
 	species_allowed = list(DIONA, PODMAN)
+
+/*
+//////////////////////////////////
+/  =--------------------------=  /
+/  == Undershirt Definitions ==  /
+/  =--------------------------=  /
+//////////////////////////////////
+*/
+
+/datum/sprite_accessory/undershirt
+	icon = 'icons/mob/human_undershirt.dmi'
+	do_colouration = TRUE
+	var/pictures_allowed = TRUE
+
+/datum/sprite_accessory/undershirt/nude
+	icon_state = "Nude"
+	name = "Nude"
+	do_colouration = FALSE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/mayka
+	icon_state = "mayka"
+	name = "Mayka"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/mayka_white
+	icon_state = "mayka_white"
+	name = "Mayka White"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/footbolka
+	icon_state = "footbolka"
+	name = "Footbolka"
+
+//	gender = NEUTER
+//	species_allowed = list(HUMAN, PODMAN)

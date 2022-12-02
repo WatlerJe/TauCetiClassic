@@ -127,7 +127,11 @@
 					. += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'>[underwear_m[underwear]]</a><br>"
 				else
 					. += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'>[underwear_f[underwear]]</a><br>"
-				. += "Undershirt: <a href='?_src_=prefs;preference=undershirt;task=input'>[undershirt_t[undershirt]]</a><br>"
+				. += "Undershirt:"
+				. += "<a href='?_src_=prefs;preference=undershirt_options;task=input'>Change</a><br>"
+			//	. += "<a href='?_src_=prefs;preference=undershirt;task=input'>Change Color</a> [color_square(r_undershirt, g_undershirt, b_undershirt)]"
+			//	. += "Style: <a href='?_src_=prefs;preference=undershirt_style;task=input'>[undershirt_style]</a><br>"
+
 				. += "Socks: <a href='?_src_=prefs;preference=socks;task=input'>[socks_t[socks]]</a><br>"
 			. += "Backpack Type: <a href ='?_src_=prefs;preference=bag;task=input'>[backbaglist[backbag]]</a><br>"
 			. += "Using skirt uniform: <a href ='?_src_=prefs;preference=use_skirt;task=input'>[use_skirt ? "Yes" : "No"]</a>"
@@ -234,7 +238,11 @@
 					else
 						underwear = rand(1, underwear_f.len)
 				if("undershirt")
-					undershirt = rand(1,undershirt_t.len)
+					r_undershirt = rand(0,255)
+					g_undershirt = rand(0,255)
+					b_undershirt = rand(0,255)
+				if("undershirt_style")
+					undershirt_style = pick(undershirt_t)
 				if("socks")
 					socks = rand(1,socks_t.len)
 				if("eyes")
@@ -398,14 +406,19 @@
 					var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference", underwear_options[underwear]) as null|anything in underwear_options
 					if(new_underwear)
 						underwear = underwear_options.Find(new_underwear)
-
-				if("undershirt")
-					var/list/undershirt_options
-					undershirt_options = undershirt_t
-
-					var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference", undershirt_options[undershirt]) as null|anything in undershirt_options
-					if (new_undershirt)
-						undershirt = undershirt_options.Find(new_undershirt)
+				if("undershirt_options")
+					//var/new_undershirt = input(user, "Choose your character's undershirt colour:", "Character Undershirt Colour", rgb(r_undershirt, g_undershirt, b_undershirt)) as color|null
+					switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color")))
+						if("Type")
+							var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference", undershirt_style) as null|anything in undershirt_t
+							if(new_undershirt)
+								undershirt_style = new_undershirt
+						if("Color")
+							var/new_undershirt_color = input(user, "Choose your character's undershirt colour:", "Character Undershirt Colour", rgb(r_undershirt, g_undershirt, b_undershirt)) as color|null
+							if(new_undershirt_color)
+								r_undershirt = hex2num(copytext(new_undershirt_color, 2, 4))
+								g_undershirt = hex2num(copytext(new_undershirt_color, 4, 6))
+								b_undershirt = hex2num(copytext(new_undershirt_color, 6, 8))
 				if("socks")
 					var/list/socks_options
 					socks_options = socks_t

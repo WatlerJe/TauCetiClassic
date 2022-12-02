@@ -46,7 +46,12 @@
 	var/b_type = "A+"           //Player's bloodtype
 
 	var/underwear = 1   //Which underwear the player wants
-	var/undershirt = 0  //Which undershirt the player wants.
+
+	var/undershirt_style = "Nude"  //Which undershirt the player wants.
+	var/r_undershirt = 0
+	var/g_undershirt = 0
+	var/b_undershirt = 0
+
 	var/socks = 0       //Which socks the player wants.
 	var/backbag = 2     //Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 	var/use_skirt = FALSE
