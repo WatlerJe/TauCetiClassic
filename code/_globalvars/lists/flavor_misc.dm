@@ -11,6 +11,9 @@ var/global/list/underwear_f = list("Red", "White", "Yellow", "Blue", "Black", "T
 	//undershirt
 var/global/list/undershirt_t = list()
 var/global/list/undershirt_t_cache = list()
+var/global/list/undershirt_pictures_list = list()
+var/global/list/undershirt_pictures_cache = list()
+
 var/global/list/socks_t = list("White normal", "White normal hipster", "White short", "White knee", "White long", "Black normal", "Black short", "Black knee", "Black long", "Tights knee", "Tights long", "Tights full", "Rainbow knee", "Rainbow long", "Stripped knee", "Stripped long", "USA knee", "USA long", "Australia knee", "Australia long", "Present knee", "Present long", "None")
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Sporty Backpack", "Satchel", "Satchel Alt")

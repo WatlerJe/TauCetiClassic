@@ -1880,26 +1880,93 @@
 	icon = 'icons/mob/human_undershirt.dmi'
 	do_colouration = TRUE
 	var/pictures_allowed = TRUE
+	var/do_gradient = TRUE
 
 /datum/sprite_accessory/undershirt/nude
 	icon_state = "Nude"
 	name = "Nude"
 	do_colouration = FALSE
 	pictures_allowed = FALSE
+	do_gradient = FALSE
 
 /datum/sprite_accessory/undershirt/mayka
 	icon_state = "mayka"
 	name = "Mayka"
 	pictures_allowed = FALSE
 
-/datum/sprite_accessory/undershirt/mayka_white
-	icon_state = "mayka_white"
-	name = "Mayka White"
-	pictures_allowed = FALSE
-
 /datum/sprite_accessory/undershirt/footbolka
 	icon_state = "footbolka"
 	name = "Footbolka"
 
-//	gender = NEUTER
-//	species_allowed = list(HUMAN, PODMAN)
+/datum/sprite_accessory/undershirt/shvetka
+	icon_state = "shvetka"
+	name = "Shvetka"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/bra
+	icon_state = "bra"
+	name = "Bra"
+	gender = FEMALE
+	pictures_allowed = FALSE
+	do_gradient = FALSE
+
+/datum/sprite_accessory/undershirt/alpha_bra
+	icon_state = "alpha_bra"
+	name = "Bra2"
+	gender = FEMALE
+	pictures_allowed = FALSE
+	do_gradient = FALSE
+
+/datum/sprite_accessory/undershirt/no_petel
+	icon_state = "no_petel"
+	name = "Bra3"
+	gender = FEMALE
+	pictures_allowed = FALSE
+	do_gradient = FALSE
+
+/datum/sprite_accessory/undershirt_pic
+	icon = 'icons/mob/human_undershirt.dmi'
+
+/datum/sprite_accessory/undershirt_pic/empty
+	icon_state = "nude"
+	name = "Empty"
+
+/datum/sprite_accessory/undershirt_pic/heart
+	icon_state = "heart"
+	name = "Heart"
+
+/datum/sprite_accessory/undershirt_pic/corgi
+	icon_state = "corgi"
+	name = "Dog"
+
+/datum/sprite_accessory/undershirt_pic/england
+	icon_state = "flag"
+	name = "British Flag"
+
+/datum/sprite_accessory/undershirt_pic/nanotrasen
+	icon_state = "nt"
+	name = "Nanotrasen"
+
+/datum/sprite_accessory/undershirt_pic/peace
+	icon_state = "peace"
+	name = "Peace"
+
+/datum/sprite_accessory/undershirt_pic/press
+	icon_state = "press"
+	name = "Kubiki"
+
+/datum/sprite_accessory/undershirt_pic/pacman
+	icon_state = "pacman"
+	name = "Gamer"
+
+/datum/sprite_accessory/undershirt_pic/karman
+	icon_state = "karman"
+	name = "Pocket"
+
+/datum/sprite_accessory/undershirt_pic/ponad_use
+	icon_state = "ponad_use"
+	name = "Ponad Use"
+
+/datum/sprite_accessory/undershirt_pic/pig
+	icon_state = "pig"
+	name = "Hohol"

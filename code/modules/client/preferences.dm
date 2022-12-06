@@ -106,6 +106,11 @@ var/global/const/MAX_SAVE_SLOTS = 10
 	var/r_undershirt = 0				//Undershirt color
 	var/g_undershirt = 0				//Undershirt color
 	var/b_undershirt = 0				//Undershirt color
+	var/undershirt_pic = "Empty"		//Shirt picture
+	var/shirt_grad_style = "none"
+	var/r_shirt_grad = 0
+	var/g_shirt_grad = 0
+	var/b_shirt_grad = 0
 	var/species = HUMAN
 	var/language = "None"				//Secondary language
 
@@ -400,6 +405,12 @@ var/global/const/MAX_SAVE_SLOTS = 10
 	character.r_undershirt = r_undershirt
 	character.g_undershirt = g_undershirt
 	character.b_undershirt = b_undershirt
+
+	character.undershirt_pic = undershirt_pic
+	character.shirt_grad_style = shirt_grad_style
+	character.r_shirt_grad = r_shirt_grad
+	character.g_shirt_grad = g_shirt_grad
+	character.b_shirt_grad = b_shirt_grad
 
 	character.s_tone = s_tone
 

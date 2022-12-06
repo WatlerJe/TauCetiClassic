@@ -51,6 +51,11 @@
 	var/r_undershirt = 0
 	var/g_undershirt = 0
 	var/b_undershirt = 0
+	var/undershirt_pic = "Empty"
+	var/shirt_grad_style = "none"
+	var/r_shirt_grad = 0
+	var/g_shirt_grad = 0
+	var/b_shirt_grad = 0
 
 	var/socks = 0       //Which socks the player wants.
 	var/backbag = 2     //Which backpack type the player has chosen. Nothing, Satchel or Backpack.

@@ -202,9 +202,28 @@ Please contact me on #coderbus IRC. ~Carn x
 			standing += mutable_appearance('icons/mob/human.dmi', "underwear[underwear]_[g]_s", -BODY_LAYER)
 
 	if(!fat && species.flags[HAS_UNDERWEAR])
-		var/datum/sprite_accessory/undershirt_type = undershirt_t[undershirt_style]
+		//select type of undeshirt
+		var/datum/sprite_accessory/undershirt/undershirt_type = undershirt_t[undershirt_style]
 		var/icon/undershirt_icon = new("icon" = undershirt_type.icon, "icon_state" = undershirt_type.icon_state)
-		undershirt_icon.Blend(rgb(r_undershirt, g_undershirt, b_undershirt), ICON_AND)
+		if(undershirt_type.do_colouration)
+			//colorize shirt
+			undershirt_icon.Blend(rgb(r_undershirt, g_undershirt, b_undershirt), ICON_AND)
+			if(undershirt_type.do_gradient)
+				//create gradient
+				var/icon/grad = new("icon" = 'icons/mob/human_undershirt.dmi', "icon_state" = shirt_gradients[shirt_grad_style])
+				//cut gradient
+				grad.Blend(undershirt_icon, ICON_AND)
+				//colorize gradient
+				grad.Blend(rgb(r_shirt_grad, g_shirt_grad, b_shirt_grad), ICON_AND)
+				//add gradient overlay
+				undershirt_icon.Blend(grad, ICON_OVERLAY)
+		if(undershirt_type.pictures_allowed)
+			//create picture
+			var/datum/sprite_accessory/undershirt_pic/my_pic = undershirt_pictures_list[undershirt_pic]
+			var/icon/shirt_pic = new("icon" = my_pic.icon, "icon_state" = my_pic.icon_state)
+			//add pic
+			undershirt_icon.Blend(shirt_pic, ICON_OVERLAY) //maybe add pixel moving for pic by Blend(x,y)
+		//accept changes on human
 		standing += mutable_appearance(undershirt_icon, undershirt_type.icon_state, -BODY_LAYER)
 
 	if(!fat && socks > 0 && socks < socks_t.len && species.flags[HAS_UNDERWEAR])

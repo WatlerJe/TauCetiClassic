@@ -129,8 +129,6 @@
 					. += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'>[underwear_f[underwear]]</a><br>"
 				. += "Undershirt:"
 				. += "<a href='?_src_=prefs;preference=undershirt_options;task=input'>Change</a><br>"
-			//	. += "<a href='?_src_=prefs;preference=undershirt;task=input'>Change Color</a> [color_square(r_undershirt, g_undershirt, b_undershirt)]"
-			//	. += "Style: <a href='?_src_=prefs;preference=undershirt_style;task=input'>[undershirt_style]</a><br>"
 
 				. += "Socks: <a href='?_src_=prefs;preference=socks;task=input'>[socks_t[socks]]</a><br>"
 			. += "Backpack Type: <a href ='?_src_=prefs;preference=bag;task=input'>[backbaglist[backbag]]</a><br>"
@@ -243,6 +241,8 @@
 					b_undershirt = rand(0,255)
 				if("undershirt_style")
 					undershirt_style = pick(undershirt_t)
+				if("undershirt_pic")
+					undershirt_pic = pick(undershirt_pictures_list)
 				if("socks")
 					socks = rand(1,socks_t.len)
 				if("eyes")
@@ -407,8 +407,7 @@
 					if(new_underwear)
 						underwear = underwear_options.Find(new_underwear)
 				if("undershirt_options")
-					//var/new_undershirt = input(user, "Choose your character's undershirt colour:", "Character Undershirt Colour", rgb(r_undershirt, g_undershirt, b_undershirt)) as color|null
-					switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color")))
+					switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture", "Gradient")))
 						if("Type")
 							var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference", undershirt_style) as null|anything in undershirt_t
 							if(new_undershirt)
@@ -419,6 +418,22 @@
 								r_undershirt = hex2num(copytext(new_undershirt_color, 2, 4))
 								g_undershirt = hex2num(copytext(new_undershirt_color, 4, 6))
 								b_undershirt = hex2num(copytext(new_undershirt_color, 6, 8))
+						if("Picture")
+							var/new_pic = input(user, "Choose your undershirt picture:", "Character Preference", undershirt_pic) as null|anything in undershirt_pictures_list
+							if(new_pic)
+								undershirt_pic = new_pic
+						if("Gradient")
+							switch(tgui_alert(user, "What do you want to change in gradient?","Choose.", list("Style", "Color")))
+								if("Style")
+									var/new_grad = input(user, "Choose a color pattern for your shirt:", "Character Gradient Style", shirt_grad_style) as null|anything in shirt_gradients
+									if(new_grad)
+										shirt_grad_style = new_grad
+								if("Color")
+									var/new_grad_color = input(user, "Choose your character's gradient colour:", "Character Gradient Color", rgb(r_shirt_grad, g_shirt_grad, b_shirt_grad)) as color|null
+									if(new_grad_color)
+										r_shirt_grad = hex2num(copytext(new_grad_color, 2, 4))
+										g_shirt_grad = hex2num(copytext(new_grad_color, 4, 6))
+										b_shirt_grad = hex2num(copytext(new_grad_color, 6, 8))
 				if("socks")
 					var/list/socks_options
 					socks_options = socks_t

@@ -52,6 +52,17 @@
 				undershirt_t_cache["[species][MALE][S.ipc_head_compatible]"] += list(S.name = list(null, null))
 				undershirt_t_cache["[species][FEMALE][S.ipc_head_compatible]"] += list(S.name = list(null, null))
 			undershirt_t_cache["[species][PLURAL][S.ipc_head_compatible]"] += list(S.name = list(null, null))
+
+	for(var/path in subtypesof(/datum/sprite_accessory/undershirt_pic))
+		var/datum/sprite_accessory/undershirt_pic/pic = new path()
+		undershirt_pictures_list[pic.name] = pic
+		for(var/species in pic.species_allowed)
+			undershirt_pictures_cache["[species][pic.gender][pic.ipc_head_compatible]"] += list(pic.name = list(null, null))
+			if(pic.gender == NEUTER)
+				undershirt_pictures_cache["[species][MALE][pic.ipc_head_compatible]"] += list(pic.name = list(null, null))
+				undershirt_pictures_cache["[species][FEMALE][pic.ipc_head_compatible]"] += list(pic.name = list(null, null))
+			undershirt_pictures_cache["[species][PLURAL][pic.ipc_head_compatible]"] += list(pic.name = list(null, null))
+
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	for(var/T in subtypesof(/datum/surgery_step))
 		var/datum/surgery_step/S = new T
