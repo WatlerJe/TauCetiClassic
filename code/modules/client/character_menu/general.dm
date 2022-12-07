@@ -411,7 +411,7 @@
 				if("undershirt_options")
 					switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture", "Gradient")))
 						if("Type")
-							var/list/valid_shirts = get_valid_styles_from_cache(undershirt_t_cache, species, gender)
+							var/list/valid_shirts = get_valid_styles_from_cache(global.undershirt_t_cache, species, gender)
 							if(valid_shirts.len)
 								var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference", undershirt_style) as null|anything in valid_shirts
 								if(new_undershirt)
@@ -423,13 +423,13 @@
 								g_undershirt = hex2num(copytext(new_undershirt_color, 4, 6))
 								b_undershirt = hex2num(copytext(new_undershirt_color, 6, 8))
 						if("Picture")
-							var/new_pic = input(user, "Choose your undershirt picture:", "Character Preference", undershirt_pic) as null|anything in undershirt_pictures_list
+							var/new_pic = input(user, "Choose your undershirt picture:", "Character Preference", undershirt_pic) as null|anything in global.undershirt_pictures_list
 							if(new_pic)
 								undershirt_pic = new_pic
 						if("Gradient")
 							switch(tgui_alert(user, "What do you want to change in gradient?","Choose.", list("Style", "Color")))
 								if("Style")
-									var/new_grad = input(user, "Choose a color pattern for your shirt:", "Character Gradient Style", shirt_grad_style) as null|anything in shirt_gradients
+									var/new_grad = input(user, "Choose a color pattern for your shirt:", "Character Gradient Style", shirt_grad_style) as null|anything in global.shirt_gradients
 									if(new_grad)
 										shirt_grad_style = new_grad
 								if("Color")

@@ -203,11 +203,11 @@ Please contact me on #coderbus IRC. ~Carn x
 
 	if(!fat && species.flags[HAS_UNDERWEAR])
 		//select type of undeshirt
-		var/datum/sprite_accessory/undershirt/undershirt_type = undershirt_t[undershirt_style]
+		var/datum/sprite_accessory/undershirt/undershirt_type = global.undershirt_t[undershirt_style]
 		var/icon/undershirt_icon = new("icon" = undershirt_type.icon, "icon_state" = undershirt_type.icon_state)
 		if(undershirt_type.do_colouration)
 			//create gradient
-			var/icon/grad = new("icon" = 'icons/mob/human_undershirt.dmi', "icon_state" = shirt_gradients[shirt_grad_style])
+			var/icon/grad = new("icon" = 'icons/mob/human_undershirt.dmi', "icon_state" = global.shirt_gradients[shirt_grad_style])
 			if(undershirt_type.do_gradient)
 				//cut gradient
 				grad.Blend(undershirt_icon, ICON_AND)
@@ -220,7 +220,7 @@ Please contact me on #coderbus IRC. ~Carn x
 				undershirt_icon.Blend(grad, ICON_OVERLAY)
 		if(undershirt_type.pictures_allowed)	//TODO: whitelist for pics
 			//create picture
-			var/datum/sprite_accessory/undershirt_pic/my_pic = undershirt_pictures_list[undershirt_pic]
+			var/datum/sprite_accessory/undershirt_pic/my_pic = global.undershirt_pictures_list[undershirt_pic]
 			var/icon/shirt_pic = new("icon" = my_pic.icon, "icon_state" = my_pic.icon_state)
 			//add pic
 			undershirt_icon.Blend(shirt_pic, ICON_OVERLAY) //maybe add pixel moving for pic by Blend(x,y)
@@ -773,7 +773,7 @@ Please contact me on #coderbus IRC. ~Carn x
 			var/tail_gender_appendix = null
 			if(species.gender_tail_icons && gender == FEMALE)
 				tail_gender_appendix = "_fem"
-			
+
 			var/image/tail_s = image("icon" = 'icons/mob/species/tail.dmi', "icon_state" = "[tail_state][tail_gender_appendix]")
 
 			var/obj/item/organ/external/chest/BP = bodyparts_by_name[BP_CHEST]
