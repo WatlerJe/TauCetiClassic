@@ -245,11 +245,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		S["ghost_orbit"] << null
 
 	if(current_version < 40)
-		if(!(undershirt_style in undershirt_t))
+		if(!(undershirt_style in global.undershirt_t))
 			undershirt_style = "Nude"
-		if(!(undershirt_pic in undershirt_pictures_list))
+		if(!(undershirt_pic in global.undershirt_pictures_list))
 			undershirt_pic = "Empty"
-		if(!(shirt_grad_style in shirt_gradients))
+		if(!(shirt_grad_style in global.shirt_gradients))
 			shirt_grad_style = "None"
 
 /datum/preferences/proc/repetitive_updates_character(current_version, savefile/S)
