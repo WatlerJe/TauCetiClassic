@@ -1878,6 +1878,7 @@
 
 /datum/sprite_accessory/undershirt
 	icon = 'icons/mob/human_undershirt.dmi'
+	species_allowed = list(HUMAN, UNATHI, SKRELL, TAJARAN)	//what about ZOMBIE, ZOMBIE_TAJARAN, ZOMBIE_UNATHI, SLIME?
 	do_colouration = TRUE
 	var/pictures_allowed = TRUE
 	var/do_gradient = TRUE
@@ -1921,6 +1922,7 @@
 	icon_state = "no_petel"
 	name = "Bra3"
 	gender = FEMALE
+	//TODO: whitelist for pics
 	pictures_allowed = FALSE
 	do_gradient = FALSE
 

@@ -9,13 +9,17 @@
 	h_style = random_hair_style(gender, species, ipc_head)
 	grad_style = random_gradient_style()
 	f_style = random_facial_hair_style(gender, species)
-	randomize_hair_color("hair")
-	randomize_hair_color("facial")
-	randomize_hair_color("gradient")
+	undershirt_style = random_undershirt_style(species, gender)
+	undershirt_pic = random_undershirt_pic()
+	shirt_grad_style = pick(shirt_gradients)
+	randomize_color("hair")
+	randomize_color("facial")
+	randomize_color("gradient")
 	randomize_eyes_color()
 	randomize_skin_color()
+	randomize_color("undershirt")
+	randomize_color("shirt_gradient")
 	underwear = rand(1,underwear_m.len)
-	undershirt_style = pick(undershirt_t)
 	socks = rand(1,socks_t.len)
 	backbag = 2
 	use_skirt = pick(TRUE, FALSE)
@@ -25,7 +29,7 @@
 		copy_to(H)
 
 
-/datum/preferences/proc/randomize_hair_color(target = "hair")
+/datum/preferences/proc/randomize_color(target = "hair")
 	if(prob (75) && target == "facial") // Chance to inherit hair color
 		r_facial = r_hair
 		g_facial = g_hair
@@ -88,6 +92,14 @@
 			r_grad = red
 			g_grad = green
 			b_grad = blue
+		if("undershirt")
+			r_undershirt = red
+			g_undershirt = green
+			b_undershirt = blue
+		if("shirt_gradient")
+			r_shirt_grad = red
+			g_shirt_grad = green
+			b_shirt_grad = blue
 
 /datum/preferences/proc/randomize_eyes_color()
 	var/red

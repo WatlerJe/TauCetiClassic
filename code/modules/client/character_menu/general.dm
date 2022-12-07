@@ -235,14 +235,16 @@
 						underwear = rand(1, underwear_m.len)
 					else
 						underwear = rand(1, underwear_f.len)
-				if("undershirt")
+				if("undershirt_options")	//where is that option?
 					r_undershirt = rand(0,255)
 					g_undershirt = rand(0,255)
 					b_undershirt = rand(0,255)
-				if("undershirt_style")
-					undershirt_style = pick(undershirt_t)
-				if("undershirt_pic")
-					undershirt_pic = pick(undershirt_pictures_list)
+					undershirt_style = random_undershirt_style(species, gender)
+					undershirt_pic = random_undershirt_pic()
+					shirt_grad_style = pick(shirt_gradients)
+					r_shirt_grad = rand(0,255)
+					g_shirt_grad = rand(0,255)
+					b_shirt_grad = rand(0,255)
 				if("socks")
 					socks = rand(1,socks_t.len)
 				if("eyes")
@@ -409,9 +411,11 @@
 				if("undershirt_options")
 					switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture", "Gradient")))
 						if("Type")
-							var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference", undershirt_style) as null|anything in undershirt_t
-							if(new_undershirt)
-								undershirt_style = new_undershirt
+							var/list/valid_shirts = get_valid_styles_from_cache(undershirt_t_cache, species, gender)
+							if(valid_shirts.len)
+								var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference", undershirt_style) as null|anything in valid_shirts
+								if(new_undershirt)
+									undershirt_style = new_undershirt
 						if("Color")
 							var/new_undershirt_color = input(user, "Choose your character's undershirt colour:", "Character Undershirt Colour", rgb(r_undershirt, g_undershirt, b_undershirt)) as color|null
 							if(new_undershirt_color)
@@ -609,6 +613,7 @@
 
 					f_style = random_facial_hair_style(gender, species)
 					h_style = random_hair_style(gender, species, ipc_head)
+					undershirt_style = random_undershirt_style(species, gender)
 
 				if("randomslot")
 					randomslot = !randomslot

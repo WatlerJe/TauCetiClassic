@@ -206,18 +206,19 @@ Please contact me on #coderbus IRC. ~Carn x
 		var/datum/sprite_accessory/undershirt/undershirt_type = undershirt_t[undershirt_style]
 		var/icon/undershirt_icon = new("icon" = undershirt_type.icon, "icon_state" = undershirt_type.icon_state)
 		if(undershirt_type.do_colouration)
+			//create gradient
+			var/icon/grad = new("icon" = 'icons/mob/human_undershirt.dmi', "icon_state" = shirt_gradients[shirt_grad_style])
+			if(undershirt_type.do_gradient)
+				//cut gradient
+				grad.Blend(undershirt_icon, ICON_AND)
 			//colorize shirt
 			undershirt_icon.Blend(rgb(r_undershirt, g_undershirt, b_undershirt), ICON_AND)
 			if(undershirt_type.do_gradient)
-				//create gradient
-				var/icon/grad = new("icon" = 'icons/mob/human_undershirt.dmi', "icon_state" = shirt_gradients[shirt_grad_style])
-				//cut gradient
-				grad.Blend(undershirt_icon, ICON_AND)
 				//colorize gradient
 				grad.Blend(rgb(r_shirt_grad, g_shirt_grad, b_shirt_grad), ICON_AND)
 				//add gradient overlay
 				undershirt_icon.Blend(grad, ICON_OVERLAY)
-		if(undershirt_type.pictures_allowed)
+		if(undershirt_type.pictures_allowed)	//TODO: whitelist for pics
 			//create picture
 			var/datum/sprite_accessory/undershirt_pic/my_pic = undershirt_pictures_list[undershirt_pic]
 			var/icon/shirt_pic = new("icon" = my_pic.icon, "icon_state" = my_pic.icon_state)
@@ -772,6 +773,7 @@ Please contact me on #coderbus IRC. ~Carn x
 			var/tail_gender_appendix = null
 			if(species.gender_tail_icons && gender == FEMALE)
 				tail_gender_appendix = "_fem"
+
 
 			var/image/tail_s = image("icon" = 'icons/mob/species/tail.dmi', "icon_state" = "[tail_state][tail_gender_appendix]")
 

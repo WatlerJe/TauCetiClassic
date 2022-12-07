@@ -290,6 +290,14 @@
 
 	mannequin.underwear = H.underwear
 	mannequin.undershirt_style = H.undershirt_style
+	mannequin.r_undershirt = H.r_undershirt
+	mannequin.g_undershirt = H.g_undershirt
+	mannequin.b_undershirt = H.b_undershirt
+	mannequin.undershirt_pic = H.undershirt_pic
+	mannequin.shirt_grad_style = H.shirt_grad_style
+	mannequin.r_shirt_grad = H.r_shirt_grad
+	mannequin.g_shirt_grad = H.g_shirt_grad
+	mannequin.b_shirt_grad = H.b_shirt_grad
 	mannequin.socks = H.socks
 
 	mannequin.update_body()

@@ -80,7 +80,6 @@ var/global/const/MAX_SAVE_SLOTS = 10
 	var/height = HUMANHEIGHT_MEDIUM			//height of character
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/underwear = 1					//underwear type
-	var/undershirt_style = "Nude"		//undershirt_style type
 	var/socks = 1						//socks type
 	var/backbag = 2						//backpack type
 	var/use_skirt = FALSE				//using skirt uniform version
@@ -103,14 +102,15 @@ var/global/const/MAX_SAVE_SLOTS = 10
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
+	var/undershirt_style = "Nude"		//Undershirt type
 	var/r_undershirt = 0				//Undershirt color
 	var/g_undershirt = 0				//Undershirt color
 	var/b_undershirt = 0				//Undershirt color
 	var/undershirt_pic = "Empty"		//Shirt picture
-	var/shirt_grad_style = "none"
-	var/r_shirt_grad = 0
-	var/g_shirt_grad = 0
-	var/b_shirt_grad = 0
+	var/shirt_grad_style = "None"		//Shirt gradient style
+	var/r_shirt_grad = 0				//Shirt gradient color
+	var/g_shirt_grad = 0				//Shirt gradient color
+	var/b_shirt_grad = 0				//Shirt gradient color
 	var/species = HUMAN
 	var/language = "None"				//Secondary language
 
@@ -402,11 +402,13 @@ var/global/const/MAX_SAVE_SLOTS = 10
 	character.g_skin = g_skin
 	character.b_skin = b_skin
 
+	character.undershirt_style = undershirt_style
 	character.r_undershirt = r_undershirt
 	character.g_undershirt = g_undershirt
 	character.b_undershirt = b_undershirt
 
 	character.undershirt_pic = undershirt_pic
+
 	character.shirt_grad_style = shirt_grad_style
 	character.r_shirt_grad = r_shirt_grad
 	character.g_shirt_grad = g_shirt_grad
@@ -478,10 +480,6 @@ var/global/const/MAX_SAVE_SLOTS = 10
 	if(underwear > underwear_m.len || underwear < 1)
 		underwear = 0 //I'm sure this is 100% unnecessary, but I'm paranoid... sue me. //HAH NOW NO MORE MAGIC CLONING UNDIES
 	character.underwear = underwear
-
-	/*if(undershirt_style > undershirt_t.len || undershirt_style < 1)
-		undershirt_style = 0*/
-	character.undershirt_style = undershirt_style
 
 	if(socks > socks_t.len || socks < 1)
 		socks = 0
