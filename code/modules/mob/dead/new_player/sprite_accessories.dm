@@ -1922,7 +1922,6 @@
 	icon_state = "no_petel"
 	name = "Bra3"
 	gender = FEMALE
-	//TODO: whitelist for pics
 	pictures_allowed = FALSE
 	do_gradient = FALSE
 
