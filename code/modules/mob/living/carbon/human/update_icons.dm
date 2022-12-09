@@ -184,7 +184,6 @@ Please contact me on #coderbus IRC. ~Carn x
 	var/list/standing = list()
 
 	var/fat = HAS_TRAIT(src, TRAIT_FAT) ? "fat" : null
-	var/g = (gender == FEMALE ? "f" : "m")
 
 	for(var/obj/item/organ/external/BP in bodyparts)
 		if(BP.is_stump)
@@ -196,12 +195,23 @@ Please contact me on #coderbus IRC. ~Carn x
 		var/mutable_appearance/tatoo = mutable_appearance('icons/mob/human.dmi', "[vox_rank]_s", -BODY_LAYER)
 		tatoo.color = rgb(r_eyes, g_eyes, b_eyes)
 		standing += tatoo
-	//Underwear
-	if((underwear > 0) && (underwear < 12) && species.flags[HAS_UNDERWEAR])
-		if(!fat)
-			standing += mutable_appearance('icons/mob/human.dmi', "underwear[underwear]_[g]_s", -BODY_LAYER)
 
-	if(!fat && species.flags[HAS_UNDERWEAR])
+	if(species.flags[HAS_UNDERWEAR] && !fat)
+		//Underwear
+		var/datum/sprite_accessory/underwear/under_type = global.underwear_list[underwear]
+		var/icon/under_icon = new("icon" = under_type.icon, "icon_state" = under_type.icon_state)
+		if(under_type.do_colouration)
+			//colorize under
+			under_icon.Blend(rgb(r_underwear, g_underwear, b_underwear), ICON_AND)
+		if(under_type.pictures_allowed)
+			//create picture
+			var/datum/sprite_accessory/underwear_pic/my_pic = global.underwear_pictures_list[underwear_pic]
+			var/icon/under_pic = new("icon" = my_pic.icon, "icon_state" = my_pic.icon_state)
+			//add pic
+			under_icon.Blend(under_pic, ICON_OVERLAY)
+		standing += mutable_appearance(under_icon, under_type.icon_state, -BODY_LAYER)
+
+		//Undershirt
 		//select type of undeshirt
 		var/datum/sprite_accessory/undershirt/undershirt_type = global.undershirt_t[undershirt_style]
 		var/icon/undershirt_icon = new("icon" = undershirt_type.icon, "icon_state" = undershirt_type.icon_state)
@@ -227,11 +237,38 @@ Please contact me on #coderbus IRC. ~Carn x
 		//accept changes on human
 		standing += mutable_appearance(undershirt_icon, undershirt_type.icon_state, -BODY_LAYER)
 
-	if(!fat && socks > 0 && socks < socks_t.len && species.flags[HAS_UNDERWEAR])
+		//Socks
 		var/obj/item/organ/external/r_foot = bodyparts_by_name[BP_R_LEG]
 		var/obj/item/organ/external/l_foot = bodyparts_by_name[BP_L_LEG]
 		if(r_foot && !r_foot.is_stump && l_foot && !l_foot.is_stump)
-			standing += mutable_appearance('icons/mob/human_socks.dmi', "socks[socks]_s", -BODY_LAYER)
+			var/datum/sprite_accessory/socks/socks_type = global.socks_list[socks]
+			var/icon/socks_icon = new("icon" = socks_type.icon, "icon_state" = socks_type.icon_state)
+			//create pic before colouration
+			var/datum/sprite_accessory/socks_pic/my_pic = global.socks_pictures_list[socks_pic]
+			var/icon/pic = new("icon" = my_pic.icon, "icon_state" = my_pic.icon_state)
+			//skip if pic not allowed
+			if(socks_type.pictures_allowed)
+				//cut picture icon
+				pic.Blend(socks_icon, ICON_AND)
+			if(socks_type.do_colouration)
+				//create gradient
+				var/icon/grad = new("icon" = 'icons/mob/human_socks.dmi', "icon_state" = global.socks_gradients[socks_grad])
+				if(socks_type.do_gradient)
+					//cut gradient
+					grad.Blend(socks_icon, ICON_AND)
+				//colorize socks
+				socks_icon.Blend(rgb(r_socks, g_socks, b_socks), ICON_AND)
+				if(socks_type.do_gradient)
+					//colorize gradient
+					grad.Blend(rgb(r_socks_grad, g_socks_grad, b_socks_grad), ICON_AND)
+					//add gradient overlay
+					socks_icon.Blend(grad, ICON_OVERLAY)
+			//again check after coloraution
+			if(socks_type.pictures_allowed)
+				//add pic
+				socks_icon.Blend(pic, ICON_OVERLAY)
+			//accept changes on human
+			standing += mutable_appearance(socks_icon, socks_type.icon_state, -BODY_LAYER)
 
 	update_tail_showing()
 	for(var/image/I in standing)

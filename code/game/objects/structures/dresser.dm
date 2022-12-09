@@ -25,19 +25,27 @@
 		if(!Adjacent(user))
 			return
 		add_fingerprint(H)
+		//copypast from general.dm
 		switch(choice)
 			if("Underwear")
-				var/list/underwear_options
-				if(gender == MALE)
-					underwear_options = underwear_m
-				else
-					underwear_options = underwear_f
-				var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in underwear_options
-				if(new_underwear && Adjacent(user))
-					H.underwear = underwear_options.Find(new_underwear)
-					H.update_body()
+				switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture")))
+					if("Type")
+						var/list/valid_pants = get_valid_styles_from_cache(global.underwear_cache, H.species, H.gender)
+						if(valid_pants.len)
+							var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference", H.underwear) as null|anything in valid_pants
+							if(new_underwear)
+								H.underwear = new_underwear
+					if("Color")
+						var/new_underwear_color = input(user, "Choose your character's underwear colour:", "Character Underwear Colour", rgb(H.r_underwear, H.g_underwear, H.b_underwear)) as color|null
+						if(new_underwear_color)
+							H.r_underwear = hex2num(copytext(new_underwear_color, 2, 4))
+							H.g_underwear = hex2num(copytext(new_underwear_color, 4, 6))
+							H.b_underwear = hex2num(copytext(new_underwear_color, 6, 8))
+					if("Picture")
+						var/new_pic = input(user, "Choose your underwear picture:", "Character Preference", H.underwear_pic) as null|anything in global.underwear_pictures_list
+						if(new_pic)
+							H.underwear_pic = new_pic
 			if("Undershirt")
-				//copypast from general.dm
 				switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture", "Gradient")))
 					if("Type")
 						var/list/valid_shirts = get_valid_styles_from_cache(undershirt_t_cache, H.get_species(), H.gender)
@@ -67,11 +75,34 @@
 									H.r_shirt_grad = hex2num(copytext(new_grad_color, 2, 4))
 									H.g_shirt_grad = hex2num(copytext(new_grad_color, 4, 6))
 									H.b_shirt_grad = hex2num(copytext(new_grad_color, 6, 8))
-				H.update_body()
 			if("Socks")
-				var/list/socks_options
-				socks_options = socks_t
-				var/new_socks = input(user, "Choose your character's socks:", "Character Preference") as null|anything in socks_options
-				if(new_socks && Adjacent(user))
-					H.socks = socks_options.Find(new_socks)
-					H.update_body()
+				switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture", "Gradient")))
+					if("Type")
+						var/list/valid_socks = get_valid_styles_from_cache(global.socks_cache, H.species, H.gender)
+						if(valid_socks.len)
+							var/new_socks = input(user, "Choose your character's socks:", "Character Preference", H.socks) as null|anything in valid_socks
+							if(new_socks)
+								H.socks = new_socks
+					if("Color")
+						var/new_socks_color = input(user, "Choose your character's socks colour:", "Character Socks Colour", rgb(H.r_socks, H.g_socks, H.b_socks)) as color|null
+						if(new_socks_color)
+							H.r_socks = hex2num(copytext(new_socks_color, 2, 4))
+							H.g_socks = hex2num(copytext(new_socks_color, 4, 6))
+							H.b_socks = hex2num(copytext(new_socks_color, 6, 8))
+					if("Picture")
+						var/new_pic = input(user, "Choose your socks picture:", "Character Preference", H.socks_pic) as null|anything in global.socks_pictures_list
+						if(new_pic)
+							H.socks_pic = new_pic
+					if("Gradient")
+						switch(tgui_alert(user, "What do you want to change in gradient?","Choose.", list("Style", "Color")))
+							if("Style")
+								var/new_grad = input(user, "Choose a color pattern for your socks:", "Socks Gradient Style", H.socks_grad) as null|anything in global.socks_gradients
+								if(new_grad)
+									H.socks_grad = new_grad
+							if("Color")
+								var/new_grad_color = input(user, "Choose your socks's gradient colour:", "Socks Gradient Color", rgb(H.r_socks_grad, H.g_socks_grad, H.b_socks_grad)) as color|null
+								if(new_grad_color)
+									H.r_socks_grad = hex2num(copytext(new_grad_color, 2, 4))
+									H.g_socks_grad = hex2num(copytext(new_grad_color, 4, 6))
+									H.b_socks_grad = hex2num(copytext(new_grad_color, 6, 8))
+		H.update_body()

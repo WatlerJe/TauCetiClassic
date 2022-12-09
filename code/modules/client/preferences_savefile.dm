@@ -251,6 +251,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			undershirt_pic = "Empty"
 		if(!(shirt_grad_style in global.shirt_gradients))
 			shirt_grad_style = "None"
+		if(!(underwear in global.underwear_list))
+			underwear = "Nude"
+		if(!(underwear_pic in global.underwear_pictures_list))
+			underwear_pic = "None"
+		if(!(socks in global.socks_list))
+			socks = "None"
+		if(!(socks_pic in global.socks_pictures_list))
+			socks = "None"
+		if(!(socks_grad in global.socks_gradients))
+			socks = "None"
 
 /datum/preferences/proc/repetitive_updates_character(current_version, savefile/S)
 
@@ -540,16 +550,28 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["eyes_green"]        >> g_eyes
 	S["eyes_blue"]         >> b_eyes
 	S["underwear"]         >> underwear
+	S["underwear_red"]     >> r_underwear
+	S["underwear_green"]   >> g_underwear
+	S["underwear_blue"]    >> b_underwear
+	S["underwear_picture"] >> underwear_pic
 	S["undershirt_style"]  >> undershirt_style
 	S["undershirt_red"]    >> r_undershirt
 	S["undershirt_blue"]   >> b_undershirt
 	S["undershirt_green"]  >> g_undershirt
-	S["under_picture"]     >> undershirt_pic
+	S["undershirt_picture"]     >> undershirt_pic
 	S["under_gradient"]    >> shirt_grad_style
 	S["under_grad_red"]    >> r_shirt_grad
 	S["under_grad_blue"]   >> b_shirt_grad
 	S["under_grad_green"]  >> g_shirt_grad
 	S["socks"]             >> socks
+	S["socks_red"]         >> r_socks
+	S["socks_green"]       >> g_socks
+	S["socks_blue"]        >> b_socks
+	S["socks_picture"]     >> socks_pic
+	S["socks_gradient"]    >> socks_grad
+	S["socks_grad_red"]    >> r_socks_grad
+	S["socks_grad_green"]  >> g_socks_grad
+	S["socks_grad_blue"]   >> b_socks_grad
 	S["backbag"]           >> backbag
 	S["b_type"]            >> b_type
 	S["use_skirt"]         >> use_skirt
@@ -630,7 +652,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	r_eyes			= sanitize_integer(r_eyes, 0, 255, initial(r_eyes))
 	g_eyes			= sanitize_integer(g_eyes, 0, 255, initial(g_eyes))
 	b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
-	underwear		= sanitize_integer(underwear, 1, underwear_m.len, initial(underwear))
+	underwear 		= sanitize_inlist(underwear, underwear_list, initial(underwear))
+	r_underwear		= sanitize_integer(r_underwear, 0, 255, initial(r_underwear))
+	b_underwear		= sanitize_integer(b_underwear, 0, 255, initial(b_underwear))
+	g_underwear		= sanitize_integer(g_underwear, 0, 255, initial(g_underwear))
+	underwear_pic	= sanitize_inlist(underwear_pic, underwear_pictures_list, initial(underwear_pic))
 	undershirt_style = sanitize_inlist(undershirt_style, undershirt_t, initial(undershirt_style))
 	r_undershirt	= sanitize_integer(r_undershirt, 0, 255, initial(r_undershirt))
 	b_undershirt	= sanitize_integer(b_undershirt, 0, 255, initial(b_undershirt))
@@ -640,7 +666,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	r_shirt_grad	= sanitize_integer(r_shirt_grad, 0, 255, initial(r_shirt_grad))
 	b_shirt_grad	= sanitize_integer(b_shirt_grad, 0, 255, initial(b_shirt_grad))
 	g_shirt_grad    = sanitize_integer(g_shirt_grad, 0, 255, initial(g_shirt_grad))
-	socks			= sanitize_integer(socks, 1, socks_t.len, initial(socks))
+	socks 			= sanitize_inlist(socks, socks_list, initial(socks))
+	r_socks			= sanitize_integer(r_socks, 0, 255, initial(r_socks))
+	b_socks			= sanitize_integer(b_socks, 0, 255, initial(b_socks))
+	g_socks			= sanitize_integer(g_socks, 0, 255, initial(g_socks))
+	socks_pic		= sanitize_inlist(socks_pic, socks_pictures_list, initial(socks_pic))
+	socks_grad 		= sanitize_inlist(socks_grad, socks_gradients, initial(socks_grad))
+	r_socks_grad	= sanitize_integer(r_socks_grad, 0, 255, initial(r_socks_grad))
+	b_socks_grad	= sanitize_integer(b_socks_grad, 0, 255, initial(b_socks_grad))
+	g_socks_grad    = sanitize_integer(g_socks_grad, 0, 255, initial(g_socks_grad))
 	backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
 	b_type			= sanitize_text(b_type, initial(b_type))
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
@@ -745,16 +779,28 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["eyes_green"]            << g_eyes
 	S["eyes_blue"]             << b_eyes
 	S["underwear"]             << underwear
+	S["underwear_red"]         << r_underwear
+	S["underwear_green"]       << g_underwear
+	S["underwear_blue"]        << b_underwear
+	S["underwear_picture"]     << underwear_pic
 	S["undershirt_style"]      << undershirt_style
 	S["undershirt_red"]        << r_undershirt
 	S["undershirt_blue"]       << b_undershirt
 	S["undershirt_green"]      << g_undershirt
-	S["under_picture"]         << undershirt_pic
+	S["undershirt_picture"]    << undershirt_pic
 	S["under_gradient"]        << shirt_grad_style
 	S["under_grad_red"]        << r_shirt_grad
 	S["under_grad_blue"]       << b_shirt_grad
 	S["under_grad_green"]      << g_shirt_grad
 	S["socks"]                 << socks
+	S["socks_red"]             << r_socks
+	S["socks_green"]           << g_socks
+	S["socks_blue"]            << b_socks
+	S["socks_picture"]         << socks_pic
+	S["socks_gradient"]        << socks_grad
+	S["socks_grad_red"]        << r_socks_grad
+	S["socks_grad_green"]      << g_socks_grad
+	S["socks_grad_blue"]       << b_socks_grad
 	S["backbag"]               << backbag
 	S["b_type"]                << b_type
 	S["use_skirt"]             << use_skirt

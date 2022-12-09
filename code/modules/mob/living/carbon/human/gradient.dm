@@ -9,3 +9,8 @@ var/global/list/shirt_gradients = list(
 	"ZA VDV" = "vdv",
 	"Rukava" = "rukava",
 	)
+var/global/list/socks_gradients = list(
+	"None" = "none",
+	"Trans" = "trans",
+	"Polosatik" = "polosatic",
+	)

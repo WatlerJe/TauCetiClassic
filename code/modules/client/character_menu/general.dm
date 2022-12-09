@@ -123,14 +123,9 @@
 		if("gear")
 			. += "<b>Gear:</b><br>"
 			if(specie_obj.flags[HAS_UNDERWEAR])
-				if(gender == MALE)
-					. += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'>[underwear_m[underwear]]</a><br>"
-				else
-					. += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'>[underwear_f[underwear]]</a><br>"
-				. += "Undershirt:"
-				. += "<a href='?_src_=prefs;preference=undershirt_options;task=input'>Change</a><br>"
-
-				. += "Socks: <a href='?_src_=prefs;preference=socks;task=input'>[socks_t[socks]]</a><br>"
+				. += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'>Change</a><br>"
+				. += "Undershirt: <a href='?_src_=prefs;preference=undershirt_options;task=input'>Change</a><br>"
+				. += "Socks: <a href='?_src_=prefs;preference=socks;task=input'>Change</a><br>"
 			. += "Backpack Type: <a href ='?_src_=prefs;preference=bag;task=input'>[backbaglist[backbag]]</a><br>"
 			. += "Using skirt uniform: <a href ='?_src_=prefs;preference=use_skirt;task=input'>[use_skirt ? "Yes" : "No"]</a>"
 
@@ -230,11 +225,11 @@
 					b_facial = rand(0,255)
 				if("f_style")
 					f_style = random_facial_hair_style(gender, species)
-				if("underwear")
+				/*if("underwear")
 					if(gender == MALE)
 						underwear = rand(1, underwear_m.len)
 					else
-						underwear = rand(1, underwear_f.len)
+						underwear = rand(1, underwear_f.len)*/
 				if("undershirt_options")	//where is that option?
 					r_undershirt = rand(0,255)
 					g_undershirt = rand(0,255)
@@ -246,7 +241,7 @@
 					g_shirt_grad = rand(0,255)
 					b_shirt_grad = rand(0,255)
 				if("socks")
-					socks = rand(1,socks_t.len)
+					//socks = rand(1,socks_list.len)
 				if("eyes")
 					r_eyes = rand(0,255)
 					g_eyes = rand(0,255)
@@ -397,17 +392,24 @@
 					f_style = valid_facialhairstyles[f_style][RIGHT]
 
 				if("underwear")
-					if(!specie_obj.flags[HAS_UNDERWEAR])
-						return
-					var/list/underwear_options
-					if(gender == MALE)
-						underwear_options = underwear_m
-					else
-						underwear_options = underwear_f
+					switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture")))
+						if("Type")
+							var/list/valid_pants = get_valid_styles_from_cache(global.underwear_cache, species, gender)
+							if(valid_pants.len)
+								var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference", underwear) as null|anything in valid_pants
+								if(new_underwear)
+									underwear = new_underwear
+						if("Color")
+							var/new_underwear_color = input(user, "Choose your character's underwear colour:", "Character Underwear Colour", rgb(r_underwear, g_underwear, b_underwear)) as color|null
+							if(new_underwear_color)
+								r_underwear = hex2num(copytext(new_underwear_color, 2, 4))
+								g_underwear = hex2num(copytext(new_underwear_color, 4, 6))
+								b_underwear = hex2num(copytext(new_underwear_color, 6, 8))
+						if("Picture")
+							var/new_pic = input(user, "Choose your underwear picture:", "Character Preference", underwear_pic) as null|anything in global.underwear_pictures_list
+							if(new_pic)
+								underwear_pic = new_pic
 
-					var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference", underwear_options[underwear]) as null|anything in underwear_options
-					if(new_underwear)
-						underwear = underwear_options.Find(new_underwear)
 				if("undershirt_options")
 					switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture", "Gradient")))
 						if("Type")
@@ -439,11 +441,35 @@
 										g_shirt_grad = hex2num(copytext(new_grad_color, 4, 6))
 										b_shirt_grad = hex2num(copytext(new_grad_color, 6, 8))
 				if("socks")
-					var/list/socks_options
-					socks_options = socks_t
-					var/new_socks = input(user, "Choose your character's socks:", "Character Preference", socks_options[socks]) as null|anything in socks_options
-					if(new_socks)
-						socks = socks_options.Find(new_socks)
+					switch(tgui_alert(user, "What do you want to change?","Choose.", list("Type", "Color", "Picture", "Gradient")))
+						if("Type")
+							var/list/valid_socks = get_valid_styles_from_cache(global.socks_cache, species, gender)
+							if(valid_socks.len)
+								var/new_socks = input(user, "Choose your character's socks:", "Character Preference", socks) as null|anything in valid_socks
+								if(new_socks)
+									socks = new_socks
+						if("Color")
+							var/new_socks_color = input(user, "Choose your character's socks colour:", "Character Socks Colour", rgb(r_socks, g_socks, b_socks)) as color|null
+							if(new_socks_color)
+								r_socks = hex2num(copytext(new_socks_color, 2, 4))
+								g_socks = hex2num(copytext(new_socks_color, 4, 6))
+								b_socks = hex2num(copytext(new_socks_color, 6, 8))
+						if("Picture")
+							var/new_pic = input(user, "Choose your socks picture:", "Character Preference", socks_pic) as null|anything in global.socks_pictures_list
+							if(new_pic)
+								socks_pic = new_pic
+						if("Gradient")
+							switch(tgui_alert(user, "What do you want to change in gradient?","Choose.", list("Style", "Color")))
+								if("Style")
+									var/new_grad = input(user, "Choose a color pattern for your socks:", "Socks Gradient Style", socks_grad) as null|anything in global.socks_gradients
+									if(new_grad)
+										socks_grad = new_grad
+								if("Color")
+									var/new_grad_color = input(user, "Choose your socks's gradient colour:", "Socks Gradient Color", rgb(r_socks_grad, g_socks_grad, b_socks_grad)) as color|null
+									if(new_grad_color)
+										r_socks_grad = hex2num(copytext(new_grad_color, 2, 4))
+										g_socks_grad = hex2num(copytext(new_grad_color, 4, 6))
+										b_socks_grad = hex2num(copytext(new_grad_color, 6, 8))
 
 				if("eyes")
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference", rgb(r_eyes, g_eyes, b_eyes)) as color|null

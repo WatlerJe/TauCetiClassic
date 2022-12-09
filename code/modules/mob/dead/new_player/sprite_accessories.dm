@@ -1884,7 +1884,7 @@
 	var/do_gradient = TRUE
 
 /datum/sprite_accessory/undershirt/nude
-	icon_state = "Nude"
+	icon_state = "nude"
 	name = "Nude"
 	do_colouration = FALSE
 	pictures_allowed = FALSE
@@ -1971,3 +1971,101 @@
 /datum/sprite_accessory/undershirt_pic/pig
 	icon_state = "pig"
 	name = "Hohol"
+
+/datum/sprite_accessory/socks
+	icon = 'icons/mob/human_socks.dmi'
+	species_allowed = list(HUMAN, UNATHI, SKRELL, TAJARAN)
+	do_colouration = TRUE
+	var/pictures_allowed = TRUE
+	var/do_gradient = TRUE
+
+/datum/sprite_accessory/socks/none
+	icon_state = "none"
+	name = "None"
+	do_colouration = FALSE
+	pictures_allowed = FALSE
+	do_gradient = FALSE
+
+/datum/sprite_accessory/socks/default
+	icon_state = "default"
+	name = "Default"
+
+/datum/sprite_accessory/socks/shorts
+	icon_state = "shorts"
+	name = "Shorts"
+
+/datum/sprite_accessory/socks/normal
+	icon_state = "normal"
+	name = "Normal"
+
+/datum/sprite_accessory/socks/golf
+	icon_state = "golf"
+	name = "Golf"
+
+/datum/sprite_accessory/socks/tonkie_noski
+	icon_state = "tonkie_noski"
+	name = "Tonkie Noski"
+
+/datum/sprite_accessory/socks/tonkie_golf
+	icon_state = "tonkie_golf"
+	name = "Tonkie Golf"
+
+/datum/sprite_accessory/socks/kolgoti
+	icon_state = "kolgoti"
+	name = "Chulki"
+
+/datum/sprite_accessory/socks_pic
+	icon = 'icons/mob/human_socks.dmi'
+
+/datum/sprite_accessory/socks_pic/none
+	icon_state = "none"
+	name = "None"
+
+/datum/sprite_accessory/socks_pic/gay
+	icon_state = "gay"
+	name = "Rainbow"
+
+/datum/sprite_accessory/socks_pic/flag
+	icon_state = "flag"
+	name = "Flag"
+
+/datum/sprite_accessory/underwear
+	icon = 'icons/mob/human.dmi'
+	species_allowed = list(HUMAN, UNATHI, SKRELL, TAJARAN)
+	do_colouration = TRUE
+	var/pictures_allowed = TRUE
+
+/datum/sprite_accessory/underwear/nude
+	icon_state = "nude"
+	name = "Nude"
+	do_colouration = FALSE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/underwear/semeyki
+	icon_state = "semeyki"
+	name = "Semeyki"
+
+/datum/sprite_accessory/underwear/normal
+	icon_state = "normalniye"
+	name = "Normal"
+	gender = FEMALE
+
+/datum/sprite_accessory/underwear/poly_prozrachnie
+	icon_state = "poly_prozrachnie"
+	name = "Alpha"
+	gender = FEMALE
+
+/datum/sprite_accessory/underwear/krasnie_truselya
+	icon_state = "truselya"
+	name = "Petrovich"
+
+/datum/sprite_accessory/underwear_pic
+	icon = 'icons/mob/human.dmi'
+
+/datum/sprite_accessory/underwear_pic/nude
+	icon_state = "nude"
+	name = "None"
+
+/datum/sprite_accessory/underwear_pic/heart
+	icon_state = "heart"
+	name = "Heart"

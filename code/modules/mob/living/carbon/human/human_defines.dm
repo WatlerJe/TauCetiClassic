@@ -45,8 +45,20 @@
 	var/height = HUMANHEIGHT_MEDIUM  //Player's height
 	var/b_type = "A+"           //Player's bloodtype
 
-	var/underwear = 1   //Which underwear the player wants
-
+	var/underwear = "Nude"
+	var/r_underwear = 0
+	var/g_underwear = 0
+	var/b_underwear = 0
+	var/underwear_pic = "None"
+	var/socks = "None"
+	var/r_socks = 0
+	var/g_socks = 0
+	var/b_socks = 0
+	var/socks_pic = "None"
+	var/socks_grad = "None"
+	var/r_socks_grad = 0
+	var/g_socks_grad = 0
+	var/b_socks_grad = 0
 	var/undershirt_style = "Nude"  //Which undershirt the player wants.
 	var/r_undershirt = 0
 	var/g_undershirt = 0
@@ -56,8 +68,6 @@
 	var/r_shirt_grad = 0
 	var/g_shirt_grad = 0
 	var/b_shirt_grad = 0
-
-	var/socks = 0       //Which socks the player wants.
 	var/backbag = 2     //Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 	var/use_skirt = FALSE
 	// General information

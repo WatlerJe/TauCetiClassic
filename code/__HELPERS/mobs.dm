@@ -27,6 +27,27 @@
 /proc/random_undershirt_grad_style()
 	return pick(global.shirt_gradients)
 
+/proc/random_underwear(species, gender)
+	var/list/valid_under = get_valid_styles_from_cache(global.underwear_cache, species, gender)
+	if(!valid_under.len)
+		return
+	return pick(valid_under)
+
+/proc/random_underwear_pic(species, gender)
+	return pick(global.underwear_pictures_list)
+
+/proc/random_socks(species, gender)
+	var/list/valid_socks = get_valid_styles_from_cache(global.socks_cache, species, gender)
+	if(!valid_socks.len)
+		return
+	return pick(valid_socks)
+
+/proc/random_socks_pic(species, gender)
+	return pick(global.socks_pictures_list)
+
+/proc/random_socks_grad()
+	return pick(global.socks_gradients)
+
 /proc/random_facial_hair_style(gender, species = HUMAN)
 	var/f_style = "Shaved"
 

@@ -10,8 +10,13 @@
 	grad_style = random_gradient_style()
 	f_style = random_facial_hair_style(gender, species)
 	undershirt_style = random_undershirt_style(species, gender)
-	undershirt_pic = random_undershirt_pic()
-	shirt_grad_style = pick(shirt_gradients)
+	undershirt_pic = random_undershirt_pic(species, gender)
+	shirt_grad_style = random_undershirt_grad_style(species, gender)
+	underwear = random_underwear(species, gender)
+	underwear_pic = random_underwear_pic(species, gender)
+	socks = random_socks(species, gender)
+	socks_pic = random_socks_pic(species, gender)
+	socks_grad = random_socks_grad(species, gender)
 	randomize_color("hair")
 	randomize_color("facial")
 	randomize_color("gradient")
@@ -19,8 +24,9 @@
 	randomize_skin_color()
 	randomize_color("undershirt")
 	randomize_color("shirt_gradient")
-	underwear = rand(1,underwear_m.len)
-	socks = rand(1,socks_t.len)
+	randomize_color("underwear")
+	randomize_color("socks")
+	randomize_color("socks_gradient")
 	backbag = 2
 	use_skirt = pick(TRUE, FALSE)
 	var/datum/species/S = all_species[species]
@@ -100,6 +106,18 @@
 			r_shirt_grad = red
 			g_shirt_grad = green
 			b_shirt_grad = blue
+		if("underwear")
+			r_underwear = red
+			g_underwear = green
+			b_underwear = blue
+		if("socks")
+			r_socks = red
+			g_socks = green
+			b_socks = blue
+		if("socks_gradient")
+			r_socks_grad = red
+			g_socks_grad = green
+			b_socks_grad = blue
 
 /datum/preferences/proc/randomize_eyes_color()
 	var/red

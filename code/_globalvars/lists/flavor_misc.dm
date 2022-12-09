@@ -6,15 +6,17 @@ var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessor
 var/global/list/hairs_cache = list()        // Circular doubly linked list indexed by name and hash. see global_lists.dm
 var/global/list/facial_hairs_cache = list() // Circular doubly linked list indexed by name and hash. see global_lists.dm
 	//Underwear
-var/global/list/underwear_m = list("White", "Grey", "Green", "Blue", "Black", "Mankini", "None") //Curse whoever made male/female underwear diffrent colours
-var/global/list/underwear_f = list("Red", "White", "Yellow", "Blue", "Black", "Thong", "None")
+var/global/list/underwear_list = list()
+var/global/list/underwear_cache = list()
+var/global/list/underwear_pictures_list = list()
 	//undershirt
 var/global/list/undershirt_t = list()
 var/global/list/undershirt_t_cache = list()
 var/global/list/undershirt_pictures_list = list()
-var/global/list/undershirt_pictures_cache = list()
-
-var/global/list/socks_t = list("White normal", "White normal hipster", "White short", "White knee", "White long", "Black normal", "Black short", "Black knee", "Black long", "Tights knee", "Tights long", "Tights full", "Rainbow knee", "Rainbow long", "Stripped knee", "Stripped long", "USA knee", "USA long", "Australia knee", "Australia long", "Present knee", "Present long", "None")
+	//socks
+var/global/list/socks_list = list()
+var/global/list/socks_cache = list()
+var/global/list/socks_pictures_list = list()
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Sporty Backpack", "Satchel", "Satchel Alt")
 	//Heights

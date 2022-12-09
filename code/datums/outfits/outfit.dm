@@ -67,8 +67,7 @@
 
 	// (flavor_misc.dm)
 	var/datum/sprite_accessory/outfit_undershirt = null   /// Any undershirt. string. no paths...
-	var/datum/sprite_accessory/outfit_underwear_m = null  /// "White", "Grey", "Green", "Blue", "Black", "Mankini", "None"
-	var/datum/sprite_accessory/outfit_underwear_f = null  /// "Red", "White", "Yellow", "Blue", "Black", "Thong", "None"
+	var/datum/sprite_accessory/outfit_underwear = null
 
 // select backpack type from preferences
 /datum/outfit/proc/preference_back(mob/living/carbon/human/H)
@@ -186,16 +185,8 @@
 		H.undershirt_style = global.undershirt_t.Find(outfit_undershirt)
 		H.update_body()
 
-	if(outfit_underwear_m || outfit_underwear_f)
-		var/list/underwear_options
-		var/outfit_underwear
-		if(H.gender == MALE)
-			underwear_options = underwear_m
-			outfit_underwear = outfit_underwear_m
-		else
-			underwear_options = underwear_f
-			outfit_underwear = outfit_underwear_f
-		H.underwear = underwear_options.Find(outfit_underwear)
+	if(outfit_underwear)
+		H.underwear = global.underwear_list.Find(outfit_underwear)
 		H.update_body()
 
 	if(l_hand)

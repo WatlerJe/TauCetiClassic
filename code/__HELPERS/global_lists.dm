@@ -53,6 +53,38 @@
 				global.undershirt_t_cache["[species][FEMALE][S.ipc_head_compatible]"] += list(S.name = list(null, null))
 			global.undershirt_t_cache["[species][PLURAL][S.ipc_head_compatible]"] += list(S.name = list(null, null))
 
+	for(var/path in subtypesof(/datum/sprite_accessory/undershirt_pic))
+		var/datum/sprite_accessory/undershirt_pic/P = new path()
+		global.undershirt_pictures_list[P.name] = P
+
+	for(var/path in subtypesof(/datum/sprite_accessory/socks))
+		var/datum/sprite_accessory/socks/S = new path()
+		global.socks_list[S.name] = S
+		for(var/species in S.species_allowed)
+			global.socks_cache["[species][S.gender][S.ipc_head_compatible]"] += list(S.name = list(null, null))
+			if(S.gender == NEUTER)
+				global.socks_cache["[species][MALE][S.ipc_head_compatible]"] += list(S.name = list(null, null))
+				global.socks_cache["[species][FEMALE][S.ipc_head_compatible]"] += list(S.name = list(null, null))
+			global.socks_cache["[species][PLURAL][S.ipc_head_compatible]"] += list(S.name = list(null, null))
+
+	for(var/path in subtypesof(/datum/sprite_accessory/socks_pic))
+		var/datum/sprite_accessory/socks_pic/P = new path()
+		global.socks_pictures_list[P.name] = P
+
+	for(var/path in subtypesof(/datum/sprite_accessory/underwear))
+		var/datum/sprite_accessory/underwear/U = new path()
+		global.underwear_list[U.name] = U
+		for(var/species in U.species_allowed)
+			global.underwear_cache["[species][U.gender][U.ipc_head_compatible]"] += list(U.name = list(null, null))
+			if(U.gender == NEUTER)
+				global.underwear_cache["[species][MALE][U.ipc_head_compatible]"] += list(U.name = list(null, null))
+				global.underwear_cache["[species][FEMALE][U.ipc_head_compatible]"] += list(U.name = list(null, null))
+			global.underwear_cache["[species][PLURAL][U.ipc_head_compatible]"] += list(U.name = list(null, null))
+
+	for(var/path in subtypesof(/datum/sprite_accessory/underwear_pic))
+		var/datum/sprite_accessory/underwear_pic/P = new path()
+		global.underwear_pictures_list[P.name] = P
+
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	for(var/T in subtypesof(/datum/surgery_step))
 		var/datum/surgery_step/S = new T

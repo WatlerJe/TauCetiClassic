@@ -79,8 +79,20 @@ var/global/const/MAX_SAVE_SLOTS = 10
 	var/age = 30						//age of character
 	var/height = HUMANHEIGHT_MEDIUM			//height of character
 	var/b_type = "A+"					//blood type (not-chooseable)
-	var/underwear = 1					//underwear type
-	var/socks = 1						//socks type
+	var/underwear = "Nude"				//underwear type
+	var/r_underwear = 0					//underwear color
+	var/g_underwear = 0 				//underwear color
+	var/b_underwear = 0 				//underwear color
+	var/underwear_pic = "None"			//underwear picture
+	var/socks = "None"					//socks type
+	var/r_socks = 0						//socks color
+	var/g_socks = 0						//socks color
+	var/b_socks = 0						//socks color
+	var/socks_pic = "None"				//socks picture
+	var/socks_grad = "None"				//socks gradient type
+	var/r_socks_grad = 0				//socks gradient color
+	var/g_socks_grad = 0				//socks gradient color
+	var/b_socks_grad = 0				//socks gradient color
 	var/backbag = 2						//backpack type
 	var/use_skirt = FALSE				//using skirt uniform version
 	var/h_style = "Bald"				//Hair type
@@ -477,14 +489,24 @@ var/global/const/MAX_SAVE_SLOTS = 10
 		W.set_dir(character.dir)
 		W.buckle_mob(character)
 
-	if(underwear > underwear_m.len || underwear < 1)
-		underwear = 0 //I'm sure this is 100% unnecessary, but I'm paranoid... sue me. //HAH NOW NO MORE MAGIC CLONING UNDIES
 	character.underwear = underwear
+	character.r_underwear = r_underwear
+	character.g_underwear = g_underwear
+	character.b_underwear = b_underwear
 
-	if(socks > socks_t.len || socks < 1)
-		socks = 0
+	character.underwear_pic = underwear_pic
 
 	character.socks = socks
+	character.r_socks = r_socks
+	character.g_socks = g_socks
+	character.b_socks = b_socks
+
+	character.socks_pic = socks_pic
+
+	character.socks_grad = socks_grad
+	character.r_socks_grad = r_socks_grad
+	character.g_socks_grad = g_socks_grad
+	character.b_socks_grad = b_socks_grad
 
 	if(backbag > 5 || backbag < 1)
 		backbag = 1 //Same as above
