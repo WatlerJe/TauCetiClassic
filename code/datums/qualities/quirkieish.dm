@@ -98,9 +98,9 @@
 /datum/quality/quirkieish/informed
 	name = "Informed"
 	desc = "В баре тебе удалось подслушать странный разговор о каких-то кодовых словах."
-	requirement = "Все, кроме охраны, Капитана и ХоПа."
+	requirement = "Все, кроме охраны, Синего щита, Капитана и ХоПа."
 
-	var/list/funpolice = list("Security Officer", "Security Cadet", "Head of Security", "Captain", "Forensic Technician", "Detective", "Captain", "Warden", "Head of Personnel")
+	var/list/funpolice = list("Security Officer", "Security Cadet", "Head of Security", "Captain", "Forensic Technician", "Detective", "Captain", "Warden", "Head of Personnel", "Blueshield Officer")
 
 /datum/quality/quirkieish/informed/satisfies_requirements(mob/living/carbon/human/H, latespawn)
 	return !(H.mind.assigned_role in funpolice)
@@ -165,7 +165,7 @@
 	H.emote("scream")
 	H.update_body()
 
-	RegisterSignal(H, list(COMSIG_MOB_SET_A_INTENT), .proc/battlecry)
+	RegisterSignal(H, list(COMSIG_MOB_SET_A_INTENT), PROC_REF(battlecry))
 
 
 /datum/quality/quirkieish/kamikaze
@@ -204,6 +204,25 @@
 		LAZYREMOVE(H.mind.skills.available_skillsets, s)
 	H.mind.skills.add_available_skillset(/datum/skillset/jack_of_all_trades)
 	H.mind.skills.maximize_active_skills()
+
+
+/datum/quality/quirkieish/mmi_ipc
+	name = "MMI IPC"
+	desc = "Ты мозг. Запертый. В оболочке. СПУ."
+	requirement = "Подопытный."
+
+/datum/quality/quirkieish/mmi_ipc/satisfies_requirements(mob/living/carbon/human/H, latespawn)
+	return H.mind.role_alt_title == "Test Subject" && H.get_species() != IPC
+
+/datum/quality/quirkieish/mmi_ipc/add_effect(mob/living/carbon/human/H, latespawn)
+	var/prev_species = H.get_species()
+	H.set_species(IPC)
+
+	// TO-DO: use human-like hairstyles for this type of IPC
+	// as well as set their head to a human-like one.
+	var/obj/item/organ/external/chest/robot/ipc/I = H.get_bodypart(BP_CHEST)
+	I.posibrain_type = /obj/item/device/mmi
+	I.posibrain_species = prev_species
 
 
 /datum/quality/quirkieish/podman
@@ -250,16 +269,23 @@
 		// While funny, please no.
 		if(isanyantag(potential_target))
 			continue
-		// Commented out because changeling stings change appearance and name but not species...
-		// so apperantly in this universe it works like this.
-		//if(get_species(potential_target) != get_species(H))
-		//	continue
+		// Hm.
+		var/datum/species/S = all_species[potential_target.get_species()]
+		if(S.flags[NO_DNA])
+			continue
+		// Okay the idea with changeling stings didn't work so now we actually change the race.
+		// We change the race because if we don't some exotic species like Vox would not have
+		// anyone they can be a doppleganger of.
+		if(config.usealienwhitelist && !is_alien_whitelisted(H, potential_target.get_species()))
+			continue
 
 		target = potential_target
 
 	if(!target)
 		to_chat(H, "<span class='warning'>Проклятие! По какой-то причине ты клонировал сам себя!</span>")
 		return
+
+	H.set_species(target.get_species())
 
 	H.dna = target.dna.Clone()
 	H.real_name = target.dna.real_name
@@ -301,7 +327,7 @@
 	if(prob(10))
 		return
 	var/obj/item/weapon/implant/mind_protect/loyalty/L = new(H)
-	L.stealth_inject(H)
+	L.inject(H, BP_CHEST)
 
 
 /datum/quality/quirkieish/slime_person
@@ -317,3 +343,86 @@
 	H.f_style = "Shaved"
 	H.h_style = "Bald"
 	H.regenerate_icons()
+
+
+/datum/quality/quirkieish/very_special
+	name = "Very Special"
+	desc = "Ты ОЧЕНЬ особенный."
+	requirement = "Да кто его знает!"
+
+/datum/quality/quirkieish/very_special/add_effect(mob/living/carbon/human/H, latespawn)
+	var/list/possible_qualities = subtypesof(/datum/quality) - /datum/quality/quirkieish/very_special
+
+	for(var/i in 1 to 3)
+		var/quality_type = pick(possible_qualities)
+		possible_qualities -= quality_type
+
+		var/datum/quality/quality = SSqualities.qualities_by_type[quality_type]
+		if(quality.satisfies_requirements(H, latespawn))
+			quality.add_effect(H, latespawn)
+
+/datum/quality/quirkieish/prisoner
+	name = "Prisoner"
+	desc = "Ты загремел в каталажку за какое-то серьёзное преступление и, конечно, не собираешься исправляться."
+
+	requirement = "Подопытный."
+
+/datum/quality/quirkieish/prisoner/satisfies_requirements(mob/living/carbon/human/H, latespawn)
+	return H.mind.role_alt_title == "Test Subject"
+
+/datum/quality/quirkieish/prisoner/add_effect(mob/living/carbon/human/H, latespawn)
+	if(latespawn == TRUE || jobban_isbanned(H, "Syndicate") || !(ROLE_TRAITOR in H.client.prefs.be_role))
+		to_chat(H, "<span class='notice'>Тебя недавно отпустили по УДО, чтобы ты мог начать жизнь с чистого листа.</span>")
+		return
+
+	var/turf/T = pick(prisonerstart)
+	H.forceMove(T)
+
+	var/number = rand(100, 999)
+
+
+	var/obj/item/weapon/card/id/ID = H.wear_id
+	ID.assignment = "Prisoner"
+	ID.rank = ID.assignment
+	ID.name = "[ID.registered_name]'s ID Card ([ID.assignment] #[number])"
+
+	var/obj/item/device/pda/PDA = H.belt
+	PDA.ownjob = ID.assignment
+	PDA.ownrank = ID.assignment
+	PDA.name = "PDA-[PDA.owner] ([ID.assignment] #[number])"
+
+	data_core.manifest_modify(ID.registered_name, ID.assignment)
+
+	H.equip_to_slot(new /obj/item/clothing/under/color/orange(H), SLOT_W_UNIFORM)
+	H.equip_to_slot(new /obj/item/clothing/shoes/orange(H), SLOT_SHOES)
+
+	if(H.wear_suit)
+		qdel(H.wear_suit)
+	if(H.gloves)
+		qdel(H.gloves)
+	if(H.back)
+		qdel(H.back)
+
+	create_and_setup_role(/datum/role/prisoner, H)
+	H.sec_hud_set_security_status()
+
+/datum/quality/quirkieish/unrestricted
+	name = "Unrestricted"
+	desc = "В качестве особого эксперимента, НТ позволило вам занять любую должность на станции."
+	requirement = "Прибыть на станцию после начала смены."
+	max_amount = 1
+
+/datum/quality/quirkieish/unrestricted/add_effect(mob/living/carbon/human/H, latespawn)
+	//only for latespawners
+	if(!latespawn)
+		return
+	var/datum/job/job = SSjob.GetJob(H.mind.assigned_role)
+	//don't give paper if work is allowed by default for species
+	if(job.is_species_permitted(H.get_species()))
+		return
+	var/obj/item/weapon/paper/P = new
+	P.name = "Форма смены профессии или должности"
+	P.info = "<center><img src = bluentlogo.png><br>Отдел Кадров Центрального Коммандования<br>Назначение на должность</center><hr>Полное имя составителя: [H.real_name]<br>Назначенная должность: [H.mind.assigned_role]<hr>Место для штампов."
+	var/obj/item/weapon/stamp/centcomm/S = new
+	S.stamp_paper(P)
+	H.equip_or_collect(P, SLOT_L_HAND)

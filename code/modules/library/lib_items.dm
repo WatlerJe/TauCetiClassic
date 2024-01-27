@@ -152,6 +152,7 @@
 	force = 1.0
 	hitsound = list('sound/items/misc/book-slap.ogg')
 	icon_state ="book"
+	item_state_world = "book_world"
 	throw_speed = 1
 	throw_range = 5
 	w_class = SIZE_SMALL		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
@@ -271,7 +272,7 @@
 							return
 					scanner.computer.inventory.Add(src)
 					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'")
-	else if(istype(I, /obj/item/weapon/kitchenknife) || iswirecutter(I))
+	else if(istype(I, /obj/item/weapon/kitchenknife) || iscutter(I))
 		if(carved)
 			return
 		if(user.is_busy(src))
