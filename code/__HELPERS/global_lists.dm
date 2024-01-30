@@ -56,6 +56,12 @@
 	for(var/path in subtypesof(/datum/sprite_accessory/undershirt_pic))
 		var/datum/sprite_accessory/undershirt_pic/P = new path()
 		global.undershirt_pictures_list[P.name] = P
+		for(var/species in P.species_allowed)
+			global.undershirt_pictures_cache["[species][P.gender][P.ipc_head_compatible]"] += list(P.name = list(null, null))
+			if(P.gender == NEUTER)
+				global.undershirt_pictures_cache["[species][MALE][P.ipc_head_compatible]"] += list(P.name = list(null, null))
+				global.undershirt_pictures_cache["[species][FEMALE][P.ipc_head_compatible]"] += list(P.name = list(null, null))
+			global.undershirt_pictures_cache["[species][PLURAL][P.ipc_head_compatible]"] += list(P.name = list(null, null))
 
 	for(var/path in subtypesof(/datum/sprite_accessory/socks))
 		var/datum/sprite_accessory/socks/S = new path()
