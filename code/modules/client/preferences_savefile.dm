@@ -278,9 +278,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!(socks in global.socks_list))
 			socks = "None"
 		if(!(socks_pic in global.socks_pictures_list))
-			socks = "None"
+			socks_pic = "None"
 		if(!(socks_grad in global.socks_gradients))
-			socks = "None"
+			socks_grad = "None"
 
 //
 /datum/preferences/proc/repetitive_updates_character(current_version, savefile/S)

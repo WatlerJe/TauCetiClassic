@@ -439,18 +439,6 @@ var/global/list/preferences_datums = list()
 	character.g_skin = g_skin
 	character.b_skin = b_skin
 
-	character.undershirt_style = undershirt_style
-	character.r_undershirt = r_undershirt
-	character.g_undershirt = g_undershirt
-	character.b_undershirt = b_undershirt
-
-	character.undershirt_pic = undershirt_pic
-
-	character.shirt_grad_style = shirt_grad_style
-	character.r_shirt_grad = r_shirt_grad
-	character.g_shirt_grad = g_shirt_grad
-	character.b_shirt_grad = b_shirt_grad
-
 	character.s_tone = s_tone
 
 	character.h_style = h_style
@@ -515,11 +503,29 @@ var/global/list/preferences_datums = list()
 		W.set_dir(character.dir)
 		W.buckle_mob(character)
 
-	character.underwear = underwear
+	character.undershirt_style = undershirt_style
+	character.r_undershirt = r_undershirt
+	character.g_undershirt = g_undershirt
+	character.b_undershirt = b_undershirt
 
-	if(undershirt > undershirt_t.len || undershirt < 1)
-		undershirt = 0
-	character.undershirt = undershirt
+	character.undershirt_pic = undershirt_pic
+
+	character.shirt_grad_style = shirt_grad_style
+	character.r_shirt_grad = r_shirt_grad
+	character.g_shirt_grad = g_shirt_grad
+	character.b_shirt_grad = b_shirt_grad
+
+	character.underwear = underwear
+	character.r_underwear = r_underwear
+	character.g_underwear = g_underwear
+	character.b_underwear = b_underwear
+
+	character.underwear_pic = underwear_pic
+
+	character.socks = socks
+	character.r_socks = r_socks
+	character.g_socks = g_socks
+	character.b_socks = b_socks
 
 	character.socks_pic = socks_pic
 

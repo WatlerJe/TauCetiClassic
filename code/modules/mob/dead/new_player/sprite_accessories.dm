@@ -2068,53 +2068,210 @@
 	do_gradient = FALSE
 
 /datum/sprite_accessory/undershirt/mayka
-	icon_state = "mayka"
+	icon_state = "mayka_old"
 	name = "Mayka"
 	pictures_allowed = FALSE
 
 /datum/sprite_accessory/undershirt/footbolka
-	icon_state = "footbolka"
+	icon_state = "footbolka_old"
 	name = "Footbolka"
 
 /datum/sprite_accessory/undershirt/shvetka
-	icon_state = "shvetka"
+	icon_state = "shvetka_old"
 	name = "Shvetka"
 	pictures_allowed = FALSE
 
 /datum/sprite_accessory/undershirt/bra
-	icon_state = "bra"
-	name = "Bra"
+	icon_state = "bra_old"
+	name = "Bra_old"
 	gender = FEMALE
 	pictures_allowed = FALSE
 	do_gradient = FALSE
 
 /datum/sprite_accessory/undershirt/alpha_bra
-	icon_state = "alpha_bra"
-	name = "Bra2"
+	icon_state = "alpha_bra_old"
+	name = "Bra_old2"
 	gender = FEMALE
 	pictures_allowed = FALSE
 	do_gradient = FALSE
 
 /datum/sprite_accessory/undershirt/no_petel
-	icon_state = "no_petel"
-	name = "Bra3"
+	icon_state = "no_petel_old"
+	name = "Bra_old3"
 	gender = FEMALE
 	pictures_allowed = FALSE
 	do_gradient = FALSE
 
+/datum/sprite_accessory/undershirt/bra1
+	icon_state = "bra1"
+	name = "Bra1"
+	gender = FEMALE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/bra2
+	icon_state = "bra2"
+	name = "Bra2"
+	gender = FEMALE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/bra3
+	icon_state = "bra3"
+	name = "Bra3"
+	gender = FEMALE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/bra4
+	icon_state = "bra4"
+	name = "Bra4"
+	gender = FEMALE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/bra5
+	icon_state = "bra5"
+	name = "Bra5"
+	gender = FEMALE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/bra6
+	icon_state = "bra6"
+	name = "Bra6"
+	gender = FEMALE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/shirt1
+	icon_state = "shirt1"
+	name = "Shirt1"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/shirt1_female
+	icon_state = "shirt1f"
+	name = "Shirt1 Female"
+	gender = FEMALE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/shirt2
+	icon_state = "shirt2"
+	name = "Shirt2"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/shirt2_female
+	icon_state = "shirt2f"
+	name = "Shirt2 Female"
+	gender = FEMALE
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/undershirt/shirt3
+	icon_state = "shirt3"
+	name = "Shirt3"
+
+/datum/sprite_accessory/undershirt/shirt3_female
+	icon_state = "shirt3f"
+	name = "Shirt3 Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt/shirt4
+	icon_state = "shirt4"
+	name = "Shirt4"
+
+/datum/sprite_accessory/undershirt/shirt4_female
+	icon_state = "shirt4f"
+	name = "Shirt4 Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt/shirt5
+	icon_state = "shirt5"
+	name = "Shirt5"
+
+/datum/sprite_accessory/undershirt/shirt5_female
+	icon_state = "shirt5f"
+	name = "Shirt5 Female"
+	gender = FEMALE
+
 /datum/sprite_accessory/undershirt_pic
 	icon = 'icons/mob/human_undershirt.dmi'
+
+/datum/sprite_accessory/undershirt_pic/tag
+	icon_state = "tag"
+	name = "Tag"
+
+/datum/sprite_accessory/undershirt_pic/tag_female
+	icon_state = "tagf"
+	name = "Tag Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt_pic/banana
+	icon_state = "banana"
+	name = "Banana"
+
+/datum/sprite_accessory/undershirt_pic/banana_female
+	icon_state = "bananaf"
+	name = "Banana Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt_pic/nt_big
+	icon_state = "NT"
+	name = "Nanotrasen logo"
+
+/datum/sprite_accessory/undershirt_pic/nt_big_female
+	icon_state = "NTf"
+	name = "Nanotrasen logo Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt_pic/corgi
+	icon_state = "corgi"
+	name = "Corgi"
+
+/datum/sprite_accessory/undershirt_pic/corgi_female
+	icon_state = "corgif"
+	name = "Corgi Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt_pic/heart
+	icon_state = "heart"
+	name = "Heart"
+
+/datum/sprite_accessory/undershirt_pic/heart_female
+	icon_state = "heartf"
+	name = "Heart Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt_pic/peace
+	icon_state = "peace"
+	name = "Peace"
+
+/datum/sprite_accessory/undershirt_pic/peace_female
+	icon_state = "peacef"
+	name = "Peace Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt_pic/nt_small
+	icon_state = "smallNT"
+	name = "NT TM"
+
+/datum/sprite_accessory/undershirt_pic/nt_small_female
+	icon_state = "smallNTf"
+	name = "NT TM Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/undershirt_pic/star
+	icon_state = "star"
+	name = "Star"
+
+/datum/sprite_accessory/undershirt_pic/star_female
+	icon_state = "starf"
+	name = "Astra"
+	gender = FEMALE
 
 /datum/sprite_accessory/undershirt_pic/empty
 	icon_state = "nude"
 	name = "Empty"
 
 /datum/sprite_accessory/undershirt_pic/heart
-	icon_state = "heart"
+	icon_state = "heart_old"
 	name = "Heart"
 
 /datum/sprite_accessory/undershirt_pic/corgi
-	icon_state = "corgi"
+	icon_state = "corgi_old"
 	name = "Dog"
 
 /datum/sprite_accessory/undershirt_pic/england
@@ -2122,11 +2279,11 @@
 	name = "British Flag"
 
 /datum/sprite_accessory/undershirt_pic/nanotrasen
-	icon_state = "nt"
+	icon_state = "nt_old"
 	name = "Nanotrasen"
 
 /datum/sprite_accessory/undershirt_pic/peace
-	icon_state = "peace"
+	icon_state = "peace_old"
 	name = "Peace"
 
 /datum/sprite_accessory/undershirt_pic/press
@@ -2138,7 +2295,7 @@
 	name = "Gamer"
 
 /datum/sprite_accessory/undershirt_pic/karman
-	icon_state = "karman"
+	icon_state = "karman_old"
 	name = "Pocket"
 
 /datum/sprite_accessory/undershirt_pic/ponad_use
@@ -2148,6 +2305,18 @@
 /datum/sprite_accessory/undershirt_pic/pig
 	icon_state = "pig"
 	name = "Hohol"
+
+/datum/sprite_accessory/undershirt_pic/beno
+	icon_state = "xenom"
+	name = "Benos"
+
+/datum/sprite_accessory/undershirt_pic/blue_slime
+	icon_state = "slime"
+	name = "Slime"
+
+/datum/sprite_accessory/undershirt_pic/umbrella
+	icon_state = "umbrella"
+	name = "Umbrella"
 
 /datum/sprite_accessory/socks
 	icon = 'icons/mob/human_socks.dmi'
@@ -2163,21 +2332,63 @@
 	pictures_allowed = FALSE
 	do_gradient = FALSE
 
+/datum/sprite_accessory/socks/zoomer
+	icon_state = "zoomer"
+	name = "Zoomer"
+
+/datum/sprite_accessory/socks/zoomer_female
+	icon_state = "zoomerf"
+	name = "Zoomer Female"
+	gender = FEMALE
+
 /datum/sprite_accessory/socks/default
 	icon_state = "default"
 	name = "Default"
+
+/datum/sprite_accessory/socks/default_female
+	icon_state = "defaultf"
+	name = "Default Female"
+	gender = FEMALE
 
 /datum/sprite_accessory/socks/shorts
 	icon_state = "shorts"
 	name = "Shorts"
 
+/datum/sprite_accessory/socks/shorts_female
+	icon_state = "shortsf"
+	name = "Shorts Female"
+	gender = FEMALE
+
 /datum/sprite_accessory/socks/normal
 	icon_state = "normal"
 	name = "Normal"
 
+/datum/sprite_accessory/socks/normal_female
+	icon_state = "normalf"
+	name = "Normal Female"
+	gender = FEMALE
+
 /datum/sprite_accessory/socks/golf
 	icon_state = "golf"
 	name = "Golf"
+
+/datum/sprite_accessory/socks/golf_female
+	icon_state = "golff"
+	name = "Golf Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/socks/retuzi
+	icon_state = "retuzi"
+	name = "Retuzi"
+
+/datum/sprite_accessory/socks/retuzi_female
+	icon_state = "retuzif"
+	name = "Retuzi Female"
+	gender = FEMALE
+
+/datum/sprite_accessory/socks/tonkie_zoomerki
+	icon_state = "tonkie_zoomerki"
+	name = "Tonkie Zoomerki"
 
 /datum/sprite_accessory/socks/tonkie_noski
 	icon_state = "tonkie_noski"
@@ -2207,7 +2418,7 @@
 	name = "Flag"
 
 /datum/sprite_accessory/underwear
-	icon = 'icons/mob/human.dmi'
+	icon = 'icons/mob/human_underwear.dmi'
 	species_allowed = list(HUMAN, UNATHI, SKRELL, TAJARAN)
 	do_colouration = TRUE
 	var/pictures_allowed = TRUE
@@ -2219,25 +2430,78 @@
 	pictures_allowed = FALSE
 
 /datum/sprite_accessory/underwear/semeyki
-	icon_state = "semeyki"
-	name = "Semeyki"
+	icon_state = "semeyki_old"
+	name = "Semeyki Old"
 
 /datum/sprite_accessory/underwear/normal
-	icon_state = "normalniye"
-	name = "Normal"
+	icon_state = "normalniye_old"
+	name = "Normal Old"
 	gender = FEMALE
 
 /datum/sprite_accessory/underwear/poly_prozrachnie
 	icon_state = "poly_prozrachnie"
 	name = "Alpha"
 	gender = FEMALE
+	pictures_allowed = FALSE
 
 /datum/sprite_accessory/underwear/krasnie_truselya
-	icon_state = "truselya"
+	icon_state = "truselya_old"
 	name = "Petrovich"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/underwear/truselya
+	icon_state = "truselya"
+	name = "Truselya"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/underwear/gladiator
+	icon_state = "gladiator"
+	name = "Gladiator"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/underwear/japan
+	icon_state = "nippon_banzai"
+	name = "Japan"
+
+/datum/sprite_accessory/underwear/stringi
+	icon_state = "stringi"
+	name = "Stringi"
+	pictures_allowed = FALSE
+
+/datum/sprite_accessory/underwear/beach_boy
+	icon_state = "beach_boy"
+	name = "Beach Boy"
+
+/datum/sprite_accessory/underwear/beach_girl
+	icon_state = "beach_girl"
+	name = "Beach Girl"
+
+/datum/sprite_accessory/underwear/normalnie
+	icon_state = "normalnie"
+	name = "Normalnie"
+
+/datum/sprite_accessory/underwear/chempion
+	icon_state = "chempion"
+	name = "Champion"
+
+/datum/sprite_accessory/underwear/semeyki
+	icon_state = "semeyki"
+	name = "Semeyki"
+
+/datum/sprite_accessory/underwear/detskie
+	icon_state = "detskie"
+	name = "Kid"
+
+/datum/sprite_accessory/underwear/pantaloni
+	icon_state = "pantaloni"
+	name = "Pantaloni"
+
+/datum/sprite_accessory/underwear/unisex
+	icon_state = "unisex"
+	name = "Unisex"
 
 /datum/sprite_accessory/underwear_pic
-	icon = 'icons/mob/human.dmi'
+	icon = 'icons/mob/human_underwear.dmi'
 
 /datum/sprite_accessory/underwear_pic/nude
 	icon_state = "nude"
