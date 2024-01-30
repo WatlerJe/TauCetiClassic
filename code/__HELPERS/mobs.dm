@@ -31,7 +31,11 @@
 	return undershirt_style
 
 /proc/random_undershirt_pic(species, gender)
-	return pick(global.undershirt_pictures_list)
+	var/list/valid_pics = get_valid_styles_from_cache(global.undershirt_pictures_cache, species, gender)
+	if(!valid_pics.len)
+		return
+	var/undershirt_pic = pick(valid_pics)
+	return undershirt_pic
 
 /proc/random_undershirt_grad_style()
 	return pick(global.shirt_gradients)
