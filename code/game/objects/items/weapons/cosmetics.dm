@@ -291,13 +291,16 @@
 	mannequin.r_underwear = H.r_underwear
 	mannequin.g_underwear = H.g_underwear
 	mannequin.b_underwear = H.b_underwear
+
 	mannequin.underwear_pic = H.underwear_pic
 
 	mannequin.undershirt_style = H.undershirt_style
 	mannequin.r_undershirt = H.r_undershirt
 	mannequin.g_undershirt = H.g_undershirt
 	mannequin.b_undershirt = H.b_undershirt
+
 	mannequin.undershirt_pic = H.undershirt_pic
+
 	mannequin.shirt_grad_style = H.shirt_grad_style
 	mannequin.r_shirt_grad = H.r_shirt_grad
 	mannequin.g_shirt_grad = H.g_shirt_grad
@@ -307,11 +310,13 @@
 	mannequin.r_socks = H.r_socks
 	mannequin.g_socks = H.g_socks
 	mannequin.b_socks = H.b_socks
+
 	mannequin.socks_pic = H.socks_pic
+
 	mannequin.socks_grad = H.socks_grad
-	mannequin.r_socks = H.r_socks
-	mannequin.g_socks = H.g_socks
-	mannequin.b_socks = H.b_socks
+	mannequin.r_socks_grad = H.r_socks_grad
+	mannequin.g_socks_grad = H.g_socks_grad
+	mannequin.b_socks_grad = H.b_socks_grad
 
 	mannequin.update_body()
 	mannequin.update_hair()
