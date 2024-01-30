@@ -13,6 +13,7 @@ var/global/list/underwear_pictures_list = list()
 var/global/list/undershirt_t = list()
 var/global/list/undershirt_t_cache = list()
 var/global/list/undershirt_pictures_list = list()
+var/global/list/undershirt_pictures_cache = list()
 	//socks
 var/global/list/socks_list = list()
 var/global/list/socks_cache = list()
