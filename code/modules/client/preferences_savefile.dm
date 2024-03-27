@@ -2,11 +2,12 @@
 #define SAVEFILE_VERSION_MIN 8
 
 //This is the current version, anything below this will attempt to update (if it's not obsolete)
-#define SAVEFILE_VERSION_MAX 49
+
+#define SAVEFILE_VERSION_MAX 51
 
 //For repetitive updates, should be the same or below SAVEFILE_VERSION_MAX
 //set this to (current SAVEFILE_VERSION_MAX)+1 when you need to update:
-#define SAVEFILE_VERSION_SPECIES_JOBS 48 // job preferences after breaking changes to any /datum/job/
+#define SAVEFILE_VERSION_SPECIES_JOBS 50 // job preferences after breaking changes to any /datum/job/
 #define SAVEFILE_VERSION_QUIRKS 30 // quirks preferences after breaking changes to any /datum/quirk/
 //breaking changes is when you remove any existing quirk/job or change their restrictions
 //Don't forget to bump SAVEFILE_VERSION_MAX too
@@ -263,25 +264,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	if(current_version < 48)
 		S["b_type"] << null
-
-	if(current_version < 49)
-		if(!(undershirt_style in global.undershirt_t))
-			undershirt_style = "Nude"
-		if(!(undershirt_pic in global.undershirt_pictures_list))
-			undershirt_pic = "Empty"
-		if(!(shirt_grad_style in global.shirt_gradients))
-			shirt_grad_style = "None"
-		if(!(underwear in global.underwear_list))
-			underwear = "Nude"
-		if(!(underwear_pic in global.underwear_pictures_list))
-			underwear_pic = "None"
-		if(!(socks in global.socks_list))
-			socks = "None"
-		if(!(socks_pic in global.socks_pictures_list))
-			socks_pic = "None"
-		if(!(socks_grad in global.socks_gradients))
-			socks_grad = "None"
-
 //
 /datum/preferences/proc/repetitive_updates_character(current_version, savefile/S)
 
