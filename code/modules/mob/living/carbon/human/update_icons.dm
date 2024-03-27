@@ -214,17 +214,17 @@ Please contact me on #coderbus IRC. ~Carn x
 	if(species.flags[HAS_UNDERWEAR] && !fat)
 		//Underwear
 		var/datum/sprite_accessory/underwear/under_type = global.underwear_list[underwear]
-		var/icon/under_icon = new("icon" = under_type.icon, "icon_state" = under_type.icon_state)
+		var/mutable_appearance/under_icon = mutable_appearance(under_type.icon, under_type.icon_state, layer = -BODY_LAYER)
 		if(under_type.do_colouration)
 			//colorize under
-			under_icon.Blend(rgb(r_underwear, g_underwear, b_underwear), ICON_AND)
+			under_icon.color = numlist2hex(list(r_underwear, g_underwear, b_underwear))
+		standing += under_icon
 		if(under_type.pictures_allowed)
 			//create picture
 			var/datum/sprite_accessory/underwear_pic/my_pic = global.underwear_pictures_list[underwear_pic]
-			var/icon/under_pic = new("icon" = my_pic.icon, "icon_state" = my_pic.icon_state)
+			var/mutable_appearance/under_pic = mutable_appearance(my_pic.icon, my_pic.icon_state, layer = -BODY_LAYER)
 			//add pic
-			under_icon.Blend(under_pic, ICON_OVERLAY)
-		standing += mutable_appearance(under_icon, under_type.icon_state, -BODY_LAYER)
+			standing += under_pic
 
 		//Undershirt
 		//select type of undeshirt
@@ -243,14 +243,15 @@ Please contact me on #coderbus IRC. ~Carn x
 				grad.Blend(rgb(r_shirt_grad, g_shirt_grad, b_shirt_grad), ICON_AND)
 				//add gradient overlay
 				undershirt_icon.Blend(grad, ICON_OVERLAY)
+		//accept changes on human
+		standing += mutable_appearance(undershirt_icon, undershirt_type.icon_state, -BODY_LAYER)
 		if(undershirt_type.pictures_allowed)	//TODO: whitelist for pics
 			//create picture
 			var/datum/sprite_accessory/undershirt_pic/my_pic = global.undershirt_pictures_list[undershirt_pic]
-			var/icon/shirt_pic = new("icon" = my_pic.icon, "icon_state" = my_pic.icon_state)
+			var/mutable_appearance/shirt_pic = mutable_appearance(my_pic.icon, my_pic.icon_state, layer = -BODY_LAYER)
 			//add pic
-			undershirt_icon.Blend(shirt_pic, ICON_OVERLAY) //maybe add pixel moving for pic by Blend(x,y)
-		//accept changes on human
-		standing += mutable_appearance(undershirt_icon, undershirt_type.icon_state, -BODY_LAYER)
+			standing += shirt_pic
+
 
 		//Socks
 		var/obj/item/organ/external/r_foot = bodyparts_by_name[BP_R_LEG]
