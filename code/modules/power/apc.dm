@@ -554,7 +554,7 @@
 
 	else if(iscoil(W) && !terminal && opened != APC_COVER_CLOSED && has_electronics != 2)
 		var/turf/TT = get_turf(src)
-		if(TT.intact)
+		if(TT.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
 			return
 		var/obj/item/stack/cable_coil/C = W
@@ -952,7 +952,8 @@
 
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)
 	operating = !operating
-	add_hiddenprint(user)
+	if(user)
+		add_hiddenprint(user)
 	if(malfai)
 		var/datum/faction/malf_silicons/GM = find_faction_by_type(/datum/faction/malf_silicons)
 		if(GM && is_station_level(z))
@@ -1365,6 +1366,19 @@
 /obj/machinery/power/apc/largecell
 	cell_type = 20000
 
+/obj/machinery/power/apc/proc/disable_autocharge()
+	chargemode = FALSE
+
+/obj/machinery/power/apc/proc/toggle_power_use()
+	toggle_breaker()
+
+/obj/machinery/power/apc/proc/disable_random_categories()
+	equipment = prob(50) ? APC_CHANNEL_OFF : equipment
+	lighting = prob(50) ? APC_CHANNEL_OFF : lighting
+	environ = prob(50) ? APC_CHANNEL_OFF : environ
+
+/obj/machinery/power/apc/proc/make_short_circuit()
+	shorted = TRUE
 
 #undef APC_WAIT_FOR_CHARGE
 

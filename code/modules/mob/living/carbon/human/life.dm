@@ -89,7 +89,7 @@
 	update_canmove()
 
 	//Update our name based on whether our face is obscured/disfigured
-	name = get_visible_name()
+	name = get_visible_name() // why in life wtf
 
 	//Species-specific update.
 	if(species)
@@ -148,11 +148,7 @@ var/global/list/tourette_bad_words= list(
 			   )
 
 /mob/living/carbon/human/proc/handle_disabilities()
-	if (disabilities & EPILEPSY || HAS_TRAIT(src, TRAIT_EPILEPSY))
-		if (prob(1) && !paralysis)
-			visible_message("<span class='danger'>[src] starts having a seizure!</span>", self_message = "<span class='warning'>You have a seizure!</span>")
-			Paralyse(10)
-			make_jittery(1000)
+	SEND_SIGNAL(src, COMSIG_HANDLE_DISABILITIES)
 	if ((disabilities & COUGHING || HAS_TRAIT(src, TRAIT_COUGH)) && !reagents.has_reagent("dextromethorphan"))
 		if (prob(5) && !paralysis)
 			drop_item()
@@ -435,9 +431,11 @@ var/global/list/tourette_bad_words= list(
 			//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection
 			adjust_bodytemperature(affecting_temp, use_insulation = TRUE, use_steps = TRUE)
 
-	else if(!species.flags[IS_SYNTHETIC] && !species.flags[RAD_IMMUNE])
+	else if(!species.flags[IS_SYNTHETIC] && !species.flags[RAD_IMMUNE] && isspaceturf(get_turf(src)))
 		if(istype(loc, /obj/mecha) || istype(loc, /obj/structure/transit_tube_pod))
 			return
+		if(HAS_ROUND_ASPECT(ROUND_ASPECT_HIGH_SPACE_RADIATION))
+			irradiate_one_mob(src, 5)
 		if(!(istype(head, /obj/item/clothing/head/helmet/space) && istype(wear_suit, /obj/item/clothing/suit/space)) && radiation < 100)
 			irradiate_one_mob(src, 5)
 
@@ -880,6 +878,9 @@ var/global/list/tourette_bad_words= list(
 		healthdoll.cut_overlays()
 		healthdoll.icon_state = "healthdoll_EMPTY"
 		for(var/obj/item/organ/external/BP in bodyparts)
+			if(SEND_SIGNAL(BP, COMSIG_BODYPART_UPDATING_HEALTH_HUD, src) & COMPONENT_OVERRIDE_BODYPART_HEALTH_HUD)
+				continue
+
 			if(!BP || BP.is_stump)
 				continue
 
@@ -1021,8 +1022,6 @@ var/global/list/tourette_bad_words= list(
 	else
 		clear_fullscreen("impaired")
 
-	update_eye_blur()
-
 	if(!machine)
 		var/isRemoteObserve = 0
 		if((REMOTE_VIEW in mutations) && remoteview_target)
@@ -1061,7 +1060,7 @@ var/global/list/tourette_bad_words= list(
 		if(G.vision_flags) // MESONS
 			sight |= G.vision_flags
 		if(!isnull(G.lighting_alpha))
-			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+			set_lighting_alpha(min(lighting_alpha, G.lighting_alpha))
 		if(G.sightglassesmod && (G.active || !G.toggleable))
 			sightglassesmod = G.sightglassesmod
 		else
@@ -1134,7 +1133,7 @@ var/global/list/tourette_bad_words= list(
 			if(isnull(V)) // Trying to figure out a runtime error that keeps repeating
 				CRASH("virus2 nulled before calling activate()")
 			else
-				V.activate(src)
+				V.on_process(src)
 			// activate may have deleted the virus
 			if(!V) continue
 
