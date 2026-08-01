@@ -458,6 +458,7 @@
 	desc = "Initially designed for the US military under the MIL-DTL-43455K standard, it is now also worn as a civilian item of clothing. Classic olive."
 	icon_state = "miljacket_army"
 	item_state = "miljacket_army"
+	item_state_world = "miljacket_army_w"
 	var/can_button_up = 1
 	var/is_button_up = 1
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -488,12 +489,14 @@
 	desc = "Initially designed for the US military under the MIL-DTL-43455K standard, it is now also worn as a civilian item of clothing. Marine cold desert."
 	icon_state = "miljacket_ranger"
 	item_state = "miljacket_ranger"
+	item_state_world = "miljacket_ranger_w"
 
 /obj/item/clothing/suit/storage/miljacket_army/miljacket_navy
 	name = "field jacket navy"
 	desc = "Initially designed for the US military under the MIL-DTL-43455K standard, it is now also worn as a civilian item of clothing. Like a navy seal,"
 	icon_state = "miljacket_navy"
 	item_state = "miljacket_navy"
+	item_state_world = "miljacket_navy_w"
 
 /obj/item/clothing/suit/poncho
 	name = "poncho"
