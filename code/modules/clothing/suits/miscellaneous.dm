@@ -462,6 +462,7 @@
 	var/can_button_up = 1
 	var/is_button_up = 1
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags = ONESIZEFITSALL|HEAR_TALK
 
 /obj/item/clothing/suit/storage/miljacket_army/verb/toggle()
 	set name = "Toggle Jacket Buttons"
